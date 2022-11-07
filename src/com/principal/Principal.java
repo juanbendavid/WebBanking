@@ -2,8 +2,10 @@
 package com.principal;
 
 import com.login.*;
+import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
@@ -17,6 +19,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setImageLabel(jButton2, "src/com/images/aplicacion-wallet-pass.png");
     }
 
     /**
@@ -37,7 +40,12 @@ public class Principal extends javax.swing.JFrame {
         separador = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        wallet = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,9 +113,57 @@ public class Principal extends javax.swing.JFrame {
         jLabel8.setText("Cuenta n° 46-7154546");
         txtclave.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 250, -1));
 
-        wallet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/aplicacion-wallet-pass.png"))); // NOI18N
-        wallet.setText("jLabel1");
-        txtclave.add(wallet, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 160, 130));
+        jButton1.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jButton1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText(" Pago de Tarjeta de Crédito");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtclave.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 260, 40));
+
+        jButton2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jButton2.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Depósito");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        txtclave.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 110, 40));
+
+        jButton3.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jButton3.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Saldo");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        txtclave.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 150, 40));
+
+        jButton4.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jButton4.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Transferencias");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtclave.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 180, 40));
+
+        jButton5.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jButton5.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Ingresar");
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtclave.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 150, 40));
+
+        jButton6.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jButton6.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Pago de Servicios");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtclave.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 180, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,6 +178,14 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +223,7 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     
-    public void setImageLabel(JLabel labelname, String root){
+    public void setImageLabel(JButton labelname, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon(
                 image.getImage().getScaledInstance(labelname.getWidth(), labelname.getHeight(), Image.SCALE_DEFAULT));
@@ -169,6 +233,12 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel contenedor;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -177,6 +247,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separador;
     private javax.swing.JPanel txtclave;
-    private javax.swing.JLabel wallet;
     // End of variables declaration//GEN-END:variables
 }
