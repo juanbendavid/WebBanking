@@ -39,6 +39,7 @@ public class login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         txtclave.setBackground(new java.awt.Color(255, 255, 255));
         txtclave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -50,7 +51,7 @@ public class login extends javax.swing.JFrame {
         jLabel4.setText("Iniciar Sesión");
         txtclave.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 330, -1));
 
-        jPanel1.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
         jLabel3.setForeground(java.awt.SystemColor.control);
@@ -112,7 +113,7 @@ public class login extends javax.swing.JFrame {
         jPasswordField1.setBorder(null);
         txtclave.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 370, -1));
 
-        jButton1.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ingresar");
