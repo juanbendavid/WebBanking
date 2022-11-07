@@ -130,7 +130,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        txtclave.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 110, 40));
+        txtclave.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 130, 40));
 
         jButton3.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
         jButton3.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
