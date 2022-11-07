@@ -1,9 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package com.deposito;
 
+package com.pagoTarjeta;
+
+import com.pagoServicios.*;
+import com.deposito.*;
 import com.login.*;
 import com.principal.Principal;
 
@@ -11,12 +10,12 @@ import com.principal.Principal;
  *
  * @author Juan David
  */
-public class Deposito extends javax.swing.JFrame {
+public class PagoTarjeta extends javax.swing.JFrame {
 
     /**
      * Creates new form login
      */
-    public Deposito() {
+    public PagoTarjeta() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -39,7 +38,8 @@ public class Deposito extends javax.swing.JFrame {
         separador1 = new javax.swing.JSeparator();
         depositarBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -51,8 +51,8 @@ public class Deposito extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Depósito");
-        txtclave.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 500, -1));
+        jLabel4.setText("Pago de Tarjeta de Crédito");
+        txtclave.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 490, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -65,24 +65,24 @@ public class Deposito extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(313, Short.MAX_VALUE)
+                    .addContainerGap(323, Short.MAX_VALUE)
                     .addComponent(jLabel3)
                     .addGap(268, 268, 268)))
         );
 
-        txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 610));
+        txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 340, 620));
 
         txtCuenta.setBackground(new java.awt.Color(255, 255, 255));
         txtCuenta.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -94,19 +94,19 @@ public class Deposito extends javax.swing.JFrame {
                 txtCuentaActionPerformed(evt);
             }
         });
-        txtclave.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 380, 20));
+        txtclave.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 380, 20));
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Seleccione una cuenta");
-        txtclave.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, 20));
-        txtclave.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 370, 20));
+        jLabel6.setText("Seleccionar Tarjeta");
+        txtclave.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 250, 20));
+        txtclave.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 370, 20));
 
         depositarBtn.setBackground(new java.awt.Color(0, 102, 102));
         depositarBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         depositarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        depositarBtn.setText("Depositar");
+        depositarBtn.setText("Pagar");
         depositarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         depositarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,19 +121,25 @@ public class Deposito extends javax.swing.JFrame {
         txtclave.add(depositarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 150, 40));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "n° 12345 Saldo: 2.300.000", "n° 12345 Saldo: 300.000", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta 1", "Tarjeta 2", "Tarjeta 3" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        txtclave.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 370, 30));
+        txtclave.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 370, 30));
 
-        jLabel7.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("Monto a Depositar");
-        txtclave.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 250, 20));
+        jLabel8.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("Deuda Total: Gs. 500.000");
+        txtclave.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 250, 20));
+
+        jLabel9.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("Monto a pagar");
+        txtclave.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 250, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,6 +161,9 @@ public class Deposito extends javax.swing.JFrame {
 
     private void depositarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarBtnActionPerformed
         // TODO add your handling code here:
+        Principal ventanaPrincipal = new Principal();
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_depositarBtnActionPerformed
 
     private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
@@ -185,21 +194,27 @@ public class Deposito extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Deposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PagoTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Deposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PagoTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Deposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PagoTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Deposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PagoTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Deposito().setVisible(true);
+                new PagoTarjeta().setVisible(true);
             }
         });
     }
@@ -210,7 +225,8 @@ public class Deposito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separador1;
     private javax.swing.JTextField txtCuenta;
