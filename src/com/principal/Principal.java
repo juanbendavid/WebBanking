@@ -2,6 +2,7 @@
 package com.principal;
 
 import com.Transferencias.Transferencias;
+import com.clases.Cliente;
 import com.deposito.Deposito;
 import com.login.*;
 import com.pagoServicios.PagoServicios;
@@ -21,8 +22,18 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
-    public Principal() {
+    
+
+    
+    public Principal(){
+        
+    }
+    
+    public Principal(Cliente cliente) {
         initComponents();
+        
+        txtBienvenido.setText("Bienvenido " + cliente.getNombre());
+        System.out.println(cliente.getNombre());
         // para colocar iconos
         setImageLabel(imageDeposito, "src/com/images/wallet.png");
         this.setLocationRelativeTo(null);
@@ -43,7 +54,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         ingresarBtn = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        txtBienvenido = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         contenedor = new javax.swing.JLabel();
         separador = new javax.swing.JSeparator();
@@ -122,11 +133,11 @@ public class Principal extends javax.swing.JFrame {
 
         txtPago.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 920, 110));
 
-        jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Bienvenido Rodrigo Salinas");
-        txtPago.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 540, -1));
+        txtBienvenido.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
+        txtBienvenido.setForeground(new java.awt.Color(0, 0, 0));
+        txtBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtBienvenido.setText("Bienvenido");
+        txtPago.add(txtBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 540, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -433,7 +444,7 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                 new Principal().setVisible(true);
             }
         });
     }
@@ -455,7 +466,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel imageTransaccion;
     private javax.swing.JButton ingresarBtn;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -464,6 +474,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separador;
+    private javax.swing.JLabel txtBienvenido;
     private javax.swing.JPanel txtPago;
     private javax.swing.JLabel txtSaldo;
     private javax.swing.JLabel txtTransacciones;

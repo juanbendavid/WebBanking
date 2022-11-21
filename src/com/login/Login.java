@@ -3,11 +3,12 @@ package com.login;
 
 import com.principal.Principal;
 
+import com.clases.*;
 /**
  *
  * @author Juan David
  */
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
 
     /**
      * Creates new form login
@@ -139,15 +140,34 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean authUser(){
+        String idCliente = txtCedula.getText();
+        String password = jPasswordField1.toString();
+        
+        System.out.println("verificando...");
+        /*
+        if (this.validación(idCliente, password) == true){
+            
+        }
+        */
+        return true;
+    }
+    
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void ingresarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal();
-        ventanaPrincipal.setVisible(true);
-        this.dispose();
+        
+        if (authUser()){
+            Cliente cliente = new Cliente();
+            cliente.setNombre("Juan");
+            Principal ventanaPrincipal = new Principal(cliente);
+            ventanaPrincipal.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_ingresarBtnMouseClicked
 
     /**
@@ -199,4 +219,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField txtCedula;
     private javax.swing.JPanel txtclave;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public int validación(String pin1, String pin2) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
