@@ -186,7 +186,7 @@ public class Deposito extends javax.swing.JFrame {
     private void cargarCuentas() {
         ArrayList<Cuenta> arrayList = cliente.getCuentas();
         for (Cuenta cuenta : arrayList) {
-            jComboBox1.addItem("N° "+cuenta.getIdCuenta() + " Saldo: " + cuenta.getSaldo());
+            jComboBox1.addItem("N° " + cuenta.getIdCuenta() + " Saldo: " + cuenta.getSaldo());
         }
     }
     
