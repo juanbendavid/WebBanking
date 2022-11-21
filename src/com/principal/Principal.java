@@ -31,9 +31,8 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal(Cliente cliente) {
         initComponents();
-        this.cliente=cliente;
-        txtBienvenido.setText("Bienvenido " + this.cliente.getNombre()); // Título de bienvenida
-
+        this.cliente= cargarClienteBD(cliente);   
+        mostrarBienvenida();
         this.setLocationRelativeTo(null);
     }
 
@@ -305,6 +304,10 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private Cliente  cargarClienteBD(Cliente cliente){
+        return cliente;
+    }
+    
     private void cambiarImagen(JLabel label, String cadena){
          setImageLabel(label, "src/com/images/"+cadena);
     }
@@ -369,7 +372,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageTransaccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageTransaccionMouseClicked
         // TODO add your handling code here:
-        Transferencias  transferencia = new Transferencias();
+        Transferencias  transferencia = new Transferencias(cliente);
         transferencia.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageTransaccionMouseClicked
@@ -386,7 +389,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageTarjetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageTarjetaMouseClicked
         // TODO add your handling code here:
-        PagoTarjeta  pagoTarjeta = new PagoTarjeta();
+        PagoTarjeta  pagoTarjeta = new PagoTarjeta(cliente);
         pagoTarjeta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageTarjetaMouseClicked
@@ -402,7 +405,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageServiciosMouseClicked
         // TODO add your handling code here:
-        PagoServicios  pagoServicios = new PagoServicios();
+        PagoServicios  pagoServicios = new PagoServicios(cliente);
         pagoServicios.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageServiciosMouseClicked
@@ -447,6 +450,11 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     
+     private void mostrarBienvenida() {
+        txtBienvenido.setText("Bienvenido " + this.cliente.getNombre()); // Título de bienvenida
+        txtNroCuenta.setText("Cuenta N° " + cliente.getCuentas().get(0).getIdCuenta());
+        txtSaldoActual.setText(cliente.getCuentas().get(0).getSaldo() +"");
+    }
     public void setImageLabel(JLabel labelname, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon(
@@ -479,4 +487,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel txtTransacciones1;
     private javax.swing.JLabel txtTransacciones2;
     // End of variables declaration//GEN-END:variables
+
+   
 }

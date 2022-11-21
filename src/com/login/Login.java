@@ -177,7 +177,6 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
         // TODO add your handling code here:
         
         if (authUser()){
-           
             Principal ventanaPrincipal = new Principal(cliente);
             ventanaPrincipal.setVisible(true);
             this.dispose();

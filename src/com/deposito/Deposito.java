@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.deposito;
 
 import com.clases.Cliente;
@@ -46,7 +43,7 @@ public class Deposito extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtCuenta = new javax.swing.JTextField();
+        txtmonto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
         depositarBtn = new javax.swing.JButton();
@@ -96,17 +93,17 @@ public class Deposito extends javax.swing.JFrame {
 
         txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 610));
 
-        txtCuenta.setBackground(new java.awt.Color(255, 255, 255));
-        txtCuenta.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCuenta.setText("500.000");
-        txtCuenta.setToolTipText("asdasd");
-        txtCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtCuenta.addActionListener(new java.awt.event.ActionListener() {
+        txtmonto.setBackground(new java.awt.Color(255, 255, 255));
+        txtmonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtmonto.setText("500000");
+        txtmonto.setToolTipText("asdasd");
+        txtmonto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtmonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCuentaActionPerformed(evt);
+                txtmontoActionPerformed(evt);
             }
         });
-        txtclave.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 380, 20));
+        txtclave.add(txtmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 380, 20));
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -168,16 +165,21 @@ public class Deposito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_depositarBtnActionPerformed
 
-    private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
+    private void txtmontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCuentaActionPerformed
+    }//GEN-LAST:event_txtmontoActionPerformed
 
     private void depositarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarBtnMouseClicked
         // TODO add your handling code here:
 
-        int selectedCuenta = jComboBox1.getSelectedIndex();
-
-        System.out.println(selectedCuenta);
+        int indice = jComboBox1.getSelectedIndex();
+        Cuenta cuenta = cliente.getCuentas().get(indice); // cuenta selececionada
+        Integer monto = Integer.parseInt(txtmonto.getText()); // monto indicado
+        Integer actual = cliente.getCuentas().get(indice).getSaldo();
+        cliente.getCuentas().get(indice).setSaldo(actual+monto);
+        System.out.println(cuenta + " " + monto);
+        // funcion para aumentar saldo en BD
+        
         Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);
         this.dispose();
@@ -236,7 +238,7 @@ public class Deposito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separador1;
-    private javax.swing.JTextField txtCuenta;
     private javax.swing.JPanel txtclave;
+    private javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
 }

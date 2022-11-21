@@ -1,6 +1,7 @@
 
 package com.Transferencias;
 
+import com.clases.Cliente;
 import com.deposito.*;
 import com.login.*;
 import com.principal.Principal;
@@ -15,9 +16,16 @@ public class Transferencias extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+    
+     private Cliente cliente;
+
     public Transferencias() {
+        
+    }
+    public Transferencias(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.cliente = cliente;
     }
 
     /**
@@ -190,7 +198,7 @@ public class Transferencias extends javax.swing.JFrame {
        
         
         
-        Principal ventanaPrincipal = new Principal();
+        Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_depositarBtnMouseClicked

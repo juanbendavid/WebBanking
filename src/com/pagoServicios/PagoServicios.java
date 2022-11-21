@@ -4,6 +4,7 @@
  */
 package com.pagoServicios;
 
+import com.clases.Cliente;
 import com.deposito.*;
 import com.login.*;
 import com.principal.Principal;
@@ -17,9 +18,15 @@ public class PagoServicios extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+     private Cliente cliente;
+
     public PagoServicios() {
+        
+    }
+    public PagoServicios(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.cliente = cliente;
     }
 
     /**
@@ -191,7 +198,7 @@ public class PagoServicios extends javax.swing.JFrame {
 
     private void depositarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal();
+        Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_depositarBtnMouseClicked

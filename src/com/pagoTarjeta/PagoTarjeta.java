@@ -1,6 +1,7 @@
 
 package com.pagoTarjeta;
 
+import com.clases.Cliente;
 import com.pagoServicios.*;
 import com.deposito.*;
 import com.login.*;
@@ -15,9 +16,15 @@ public class PagoTarjeta extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+     private Cliente cliente;
+
     public PagoTarjeta() {
+        
+    }
+    public PagoTarjeta(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.cliente = cliente;
     }
 
     /**
@@ -161,7 +168,7 @@ public class PagoTarjeta extends javax.swing.JFrame {
 
     private void depositarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarBtnActionPerformed
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal();
+        Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_depositarBtnActionPerformed
@@ -172,7 +179,7 @@ public class PagoTarjeta extends javax.swing.JFrame {
 
     private void depositarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal();
+        Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_depositarBtnMouseClicked

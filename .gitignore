@@ -7,7 +7,7 @@
 # BlueJ files
 *.ctxt
 
-
+build/
 
 # Package Files #
 *.jar
