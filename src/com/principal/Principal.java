@@ -23,7 +23,7 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form login
      */
     
-
+    private Cliente cliente;
     
     public Principal(){
         
@@ -31,11 +31,9 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal(Cliente cliente) {
         initComponents();
-        
-        txtBienvenido.setText("Bienvenido " + cliente.getNombre());
-        System.out.println(cliente.getNombre());
-        // para colocar iconos
-        setImageLabel(imageDeposito, "src/com/images/wallet.png");
+        this.cliente=cliente;
+        txtBienvenido.setText("Bienvenido " + this.cliente.getNombre()); // Título de bienvenida
+
         this.setLocationRelativeTo(null);
     }
 
@@ -59,9 +57,9 @@ public class Principal extends javax.swing.JFrame {
         contenedor = new javax.swing.JLabel();
         separador = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        txtNroCuenta = new javax.swing.JLabel();
         imageDeposito = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        txtSaldoActual = new javax.swing.JLabel();
         imageSaldo = new javax.swing.JLabel();
         txtSaldo = new javax.swing.JLabel();
         imageTransaccion = new javax.swing.JLabel();
@@ -136,7 +134,7 @@ public class Principal extends javax.swing.JFrame {
         txtBienvenido.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
         txtBienvenido.setForeground(new java.awt.Color(0, 0, 0));
         txtBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtBienvenido.setText("Bienvenido");
+        txtBienvenido.setText("Bienvenido Rodrigo Salinas");
         txtPago.add(txtBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 540, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -153,7 +151,7 @@ public class Principal extends javax.swing.JFrame {
 
         contenedor.setToolTipText("");
         contenedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtPago.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 340, 150));
+        txtPago.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 340, 150));
         txtPago.add(separador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, 20));
 
         jLabel7.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -162,11 +160,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setText("Su saldo actual es");
         txtPago.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 250, -1));
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("Cuenta n° 46-7154546");
-        txtPago.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 250, -1));
+        txtNroCuenta.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        txtNroCuenta.setForeground(new java.awt.Color(102, 102, 102));
+        txtNroCuenta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtNroCuenta.setText("Cuenta n° 46-7154546");
+        txtPago.add(txtNroCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 250, -1));
 
         imageDeposito.setText("imageDeposito");
         imageDeposito.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -181,17 +179,17 @@ public class Principal extends javax.swing.JFrame {
         });
         txtPago.add(imageDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 70, 70));
 
-        jLabel6.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Gs. 2.300.000");
-        jLabel6.setToolTipText("");
-        jLabel6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        txtSaldoActual.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
+        txtSaldoActual.setForeground(new java.awt.Color(0, 0, 0));
+        txtSaldoActual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtSaldoActual.setText("Gs. 2.300.000");
+        txtSaldoActual.setToolTipText("");
+        txtSaldoActual.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jLabel6MouseMoved(evt);
+                txtSaldoActualMouseMoved(evt);
             }
         });
-        txtPago.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 340, -1));
+        txtPago.add(txtSaldoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 340, -1));
 
         imageSaldo.setText("imageDeposito");
         imageSaldo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -340,14 +338,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageDepositoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageDepositoMouseClicked
         // TODO add your handling code here:
-        Deposito  deposito = new Deposito();
+        Deposito deposito = new Deposito(cliente);
         deposito.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageDepositoMouseClicked
 
-    private void jLabel6MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseMoved
+    private void txtSaldoActualMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSaldoActualMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel6MouseMoved
+    }//GEN-LAST:event_txtSaldoActualMouseMoved
 
     private void imageSaldoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSaldoMouseMoved
         // TODO add your handling code here:
@@ -467,16 +465,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton ingresarBtn;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separador;
     private javax.swing.JLabel txtBienvenido;
+    private javax.swing.JLabel txtNroCuenta;
     private javax.swing.JPanel txtPago;
     private javax.swing.JLabel txtSaldo;
+    private javax.swing.JLabel txtSaldoActual;
     private javax.swing.JLabel txtTransacciones;
     private javax.swing.JLabel txtTransacciones1;
     private javax.swing.JLabel txtTransacciones2;

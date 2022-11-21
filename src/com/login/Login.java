@@ -4,6 +4,7 @@ package com.login;
 import com.principal.Principal;
 
 import com.clases.*;
+import java.util.ArrayList;
 /**
  *
  * @author Juan David
@@ -13,6 +14,9 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
     /**
      * Creates new form login
      */
+    
+    private Cliente cliente;
+    
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -145,11 +149,23 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
         String password = jPasswordField1.toString();
         
         System.out.println("verificando...");
-        /*
-        if (this.validación(idCliente, password) == true){
+        
+        if (validación(idCliente, password) == 0){
+            ArrayList<Cuenta> cuentas= new ArrayList<>();
+            ArrayList<Movimiento> movimientos = new ArrayList<>();
+            ArrayList<Tarjeta> tarjetas = new ArrayList<>();
+            cuentas.add(new Cuenta(200000, movimientos, "1"));
+            cuentas.add(new Cuenta(5030343, movimientos, "2"));
             
+            
+            cliente = new Cliente();
+            cliente.setNombre("Juan David");
+            cliente.setPinCuenta("11-44444");
+            cliente.setPinTransferencia("12345");
+            cliente.setCuentas(cuentas);
+            cliente.setTarjetas(tarjetas);
         }
-        */
+        
         return true;
     }
     
@@ -161,8 +177,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
         // TODO add your handling code here:
         
         if (authUser()){
-            Cliente cliente = new Cliente();
-            cliente.setNombre("Juan");
+           
             Principal ventanaPrincipal = new Principal(cliente);
             ventanaPrincipal.setVisible(true);
             this.dispose();
@@ -222,6 +237,6 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
 
     @Override
     public int validación(String pin1, String pin2) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 0;
     }
 }

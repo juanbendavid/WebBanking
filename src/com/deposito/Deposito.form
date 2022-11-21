@@ -199,11 +199,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="n&#xb0; 12345 Saldo: 2.300.000"/>
-                <StringItem index="1" value="n&#xb0; 12345 Saldo: 300.000"/>
-                <StringItem index="2" value=" "/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>

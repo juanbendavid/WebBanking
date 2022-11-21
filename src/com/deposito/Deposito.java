@@ -4,8 +4,11 @@
  */
 package com.deposito;
 
+import com.clases.Cliente;
+import com.clases.Cuenta;
 import com.login.*;
 import com.principal.Principal;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,9 +19,18 @@ public class Deposito extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+    private Cliente cliente;
+
     public Deposito() {
+        
+    }
+
+    public Deposito(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.cliente = cliente;
+        cargarCuentas();
+        
     }
 
     /**
@@ -121,7 +133,6 @@ public class Deposito extends javax.swing.JFrame {
         txtclave.add(depositarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 150, 40));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "n° 12345 Saldo: 2.300.000", "n° 12345 Saldo: 300.000", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -163,14 +174,26 @@ public class Deposito extends javax.swing.JFrame {
 
     private void depositarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal();
+
+        int selectedCuenta = jComboBox1.getSelectedIndex();
+
+        System.out.println(selectedCuenta);
+        Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_depositarBtnMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void cargarCuentas() {
+        ArrayList<Cuenta> arrayList = cliente.getCuentas();
+        for (Cuenta cuenta : arrayList) {
+            jComboBox1.addItem("N° "+cuenta.getIdCuenta() + " Saldo: " + cuenta.getSaldo());
+        }
+    }
+    
+    
+        /**
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

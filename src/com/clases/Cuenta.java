@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 public class Cuenta {
     private int saldo;
-    private ArrayList<String> movimientos;
+    private ArrayList<Movimiento> movimientos;
     private String idCuenta;
 
-    public Cuenta(int saldo, ArrayList<String> movimientos, String idCuenta) {
+    public Cuenta(int saldo, ArrayList<Movimiento> movimientos, String idCuenta) {
         this.saldo = saldo;
         this.movimientos = movimientos;
         this.idCuenta = idCuenta;
@@ -31,11 +31,11 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
-    public ArrayList<String> getMovimientos() {
+    public ArrayList<Movimiento> getMovimientos() {
         return movimientos;
     }
 
-    public void setMovimientos(ArrayList<String> movimientos) {
+    public void setMovimientos(ArrayList<Movimiento> movimientos) {
         this.movimientos = movimientos;
     }
 
@@ -55,7 +55,7 @@ public class Cuenta {
         this.saldo-=monto;
     }
     
-    public void addMovimiento (String movimiento){
+    public void addMovimiento (Movimiento movimiento){
         this.movimientos.add(movimiento);
     }
     

@@ -13,14 +13,14 @@ public class Cliente {
     private String idCliente;
     private String pinCuenta;
     private String pinTransferencia;
-    private ArrayList<String> cuentas;
-    private ArrayList<String> tarjetas;
+    private ArrayList<Cuenta> cuentas;
+    private ArrayList<Tarjeta> tarjetas;
 
     // contructor por defecto
     public Cliente(){
         
     }
-    public Cliente(String nombre, String idCliente, String pinCuenta, String pinTransferencia, ArrayList<String> cuentas, ArrayList<String> tarjetas) {
+    public Cliente(String nombre, String idCliente, String pinCuenta, String pinTransferencia, ArrayList<Cuenta> cuentas, ArrayList<Tarjeta> tarjetas) {
         this.nombre = nombre;
         this.idCliente = idCliente;
         this.pinCuenta = pinCuenta;
@@ -61,19 +61,19 @@ public class Cliente {
         this.pinTransferencia = pinTransferencia;
     }
 
-    public ArrayList<String> getCuentas() {
+    public ArrayList<Cuenta> getCuentas() {
         return cuentas;
     }
 
-    public void setCuentas(ArrayList<String> cuentas) {
+    public void setCuentas(ArrayList<Cuenta> cuentas) {
         this.cuentas = cuentas;
     }
 
-    public ArrayList<String> getTarjetas() {
+    public ArrayList<Tarjeta> getTarjetas() {
         return tarjetas;
     }
 
-    public void setTarjetas(ArrayList<String> tarjetas) {
+    public void setTarjetas(ArrayList<Tarjeta> tarjetas) {
         this.tarjetas = tarjetas;
     }
     
