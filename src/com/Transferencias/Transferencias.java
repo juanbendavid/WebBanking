@@ -32,18 +32,15 @@ public class Transferencias extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtCuenta = new javax.swing.JTextField();
-        separador = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
         depositarBtn = new javax.swing.JButton();
-        txtNomYApe = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
-        separador2 = new javax.swing.JSeparator();
+        separador3 = new javax.swing.JSeparator();
+        txtCedula1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -88,12 +85,6 @@ public class Transferencias extends javax.swing.JFrame {
 
         txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 610));
 
-        jLabel5.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Nombre y Apellido ");
-        txtclave.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 250, 20));
-
         txtCuenta.setBackground(new java.awt.Color(255, 255, 255));
         txtCuenta.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtCuenta.setText("14-21541245");
@@ -104,15 +95,14 @@ public class Transferencias extends javax.swing.JFrame {
                 txtCuentaActionPerformed(evt);
             }
         });
-        txtclave.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 380, 20));
-        txtclave.add(separador, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 370, 20));
+        txtclave.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 380, 20));
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Seleccione una cuenta");
-        txtclave.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 250, 20));
-        txtclave.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 370, 20));
+        txtclave.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 20));
+        txtclave.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 370, 20));
 
         depositarBtn.setBackground(new java.awt.Color(0, 102, 102));
         depositarBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -129,19 +119,7 @@ public class Transferencias extends javax.swing.JFrame {
                 depositarBtnActionPerformed(evt);
             }
         });
-        txtclave.add(depositarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 150, 40));
-
-        txtNomYApe.setBackground(new java.awt.Color(255, 255, 255));
-        txtNomYApe.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtNomYApe.setText("Marcelo Pauls");
-        txtNomYApe.setToolTipText("asdasd");
-        txtNomYApe.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtNomYApe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomYApeActionPerformed(evt);
-            }
-        });
-        txtclave.add(txtNomYApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 380, 20));
+        txtclave.add(depositarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 150, 40));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "n° 12345 Saldo: 300.000", "n° 54-248742 Saldo: 1.000.000", " " }));
@@ -150,32 +128,32 @@ public class Transferencias extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        txtclave.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 370, 30));
+        txtclave.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 370, 30));
 
         jLabel7.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("Número de Cuenta");
-        txtclave.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 250, 20));
+        jLabel7.setText("Número de Cuenta Destinatario");
+        txtclave.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 290, 20));
+        txtclave.add(separador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 370, 20));
 
-        jLabel8.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("Número de Cédula");
-        txtclave.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 20));
-
-        txtCedula.setBackground(new java.awt.Color(255, 255, 255));
-        txtCedula.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCedula.setText("6124575");
-        txtCedula.setToolTipText("asdasd");
-        txtCedula.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+        txtCedula1.setBackground(new java.awt.Color(255, 255, 255));
+        txtCedula1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCedula1.setText("600.000");
+        txtCedula1.setToolTipText("600.000");
+        txtCedula1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtCedula1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaActionPerformed(evt);
+                txtCedula1ActionPerformed(evt);
             }
         });
-        txtclave.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 380, 20));
-        txtclave.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 370, 20));
+        txtclave.add(txtCedula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 380, 20));
+
+        jLabel9.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("Monto");
+        txtclave.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,17 +173,9 @@ public class Transferencias extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCuentaActionPerformed
 
-    private void txtNomYApeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomYApeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomYApeActionPerformed
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void depositarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarBtnActionPerformed
         // TODO add your handling code here:
@@ -217,6 +187,10 @@ public class Transferencias extends javax.swing.JFrame {
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_depositarBtnMouseClicked
+
+    private void txtCedula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedula1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedula1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,17 +239,14 @@ public class Transferencias extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator separador;
     private javax.swing.JSeparator separador1;
-    private javax.swing.JSeparator separador2;
-    private javax.swing.JTextField txtCedula;
+    private javax.swing.JSeparator separador3;
+    private javax.swing.JTextField txtCedula1;
     private javax.swing.JTextField txtCuenta;
-    private javax.swing.JTextField txtNomYApe;
     private javax.swing.JPanel txtclave;
     // End of variables declaration//GEN-END:variables
 }

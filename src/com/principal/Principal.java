@@ -24,7 +24,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         // para colocar iconos
-        //setImageLabel(depositoBtn, "src/com/images/aplicacion-wallet-pass.png");
+        setImageLabel(depositoLabel, "src/com/images/wallet.png");
         this.setLocationRelativeTo(null);
     }
 
@@ -37,6 +37,8 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         txtclave = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,12 +50,21 @@ public class Principal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         tarjetaBtn = new javax.swing.JButton();
-        depositoBtn = new javax.swing.JButton();
         saldoBtn = new javax.swing.JButton();
         transferenciasBtn = new javax.swing.JButton();
         serviciosBtn = new javax.swing.JButton();
+        depositoLabel = new javax.swing.JLabel();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
 
         txtclave.setBackground(new java.awt.Color(255, 255, 255));
         txtclave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -117,6 +128,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Gs. 2.300.000");
         jLabel5.setToolTipText("");
+        jLabel5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLabel5MouseMoved(evt);
+            }
+        });
         txtclave.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 340, -1));
 
         contenedor.setToolTipText("");
@@ -152,23 +168,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         txtclave.add(tarjetaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, 260, 40));
-
-        depositoBtn.setBackground(new java.awt.Color(0, 102, 102));
-        depositoBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        depositoBtn.setForeground(new java.awt.Color(255, 255, 255));
-        depositoBtn.setText("Depósito");
-        depositoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        depositoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                depositoBtnMouseClicked(evt);
-            }
-        });
-        depositoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                depositoBtnActionPerformed(evt);
-            }
-        });
-        txtclave.add(depositoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 130, 40));
 
         saldoBtn.setBackground(new java.awt.Color(0, 102, 102));
         saldoBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -206,6 +205,19 @@ public class Principal extends javax.swing.JFrame {
         });
         txtclave.add(serviciosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 180, 40));
 
+        depositoLabel.setText("jLabel1");
+        depositoLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                depositoLabelMouseMoved(evt);
+            }
+        });
+        depositoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                depositoLabelMouseClicked(evt);
+            }
+        });
+        txtclave.add(depositoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 70, 60));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -224,10 +236,6 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_saldoBtnActionPerformed
 
-    private void depositoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depositoBtnActionPerformed
-
     private void tarjetaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarjetaBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tarjetaBtnActionPerformed
@@ -239,13 +247,6 @@ public class Principal extends javax.swing.JFrame {
         ventanaLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ingresarBtnMouseClicked
-
-    private void depositoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositoBtnMouseClicked
-        // TODO add your handling code here:
-        Deposito ventanaDeposito = new Deposito();
-        ventanaDeposito.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_depositoBtnMouseClicked
 
     private void serviciosBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serviciosBtnMouseClicked
         // TODO add your handling code here:
@@ -268,6 +269,30 @@ public class Principal extends javax.swing.JFrame {
         ventaTransferencias.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_transferenciasBtnMouseClicked
+
+    private void jLabel5MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseMoved
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jLabel5MouseMoved
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        // TODO add your handling code here:
+        System.out.println("ventana");
+         setImageLabel(depositoLabel, "src/com/images/wallet.png");
+    }//GEN-LAST:event_formMouseMoved
+
+    private void depositoLabelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositoLabelMouseMoved
+        // TODO add your handling code here:
+        System.out.println("etiqueta");
+        setImageLabel(depositoLabel, "src/com/images/wallet_move.png");
+    }//GEN-LAST:event_depositoLabelMouseMoved
+
+    private void depositoLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositoLabelMouseClicked
+        // TODO add your handling code here:
+        Deposito  deposito = new Deposito();
+        deposito.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_depositoLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -305,7 +330,7 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     
-    public void setImageLabel(JButton labelname, String root){
+    public void setImageLabel(JLabel labelname, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon(
                 image.getImage().getScaledInstance(labelname.getWidth(), labelname.getHeight(), Image.SCALE_DEFAULT));
@@ -315,13 +340,15 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel contenedor;
-    private javax.swing.JButton depositoBtn;
+    private javax.swing.JLabel depositoLabel;
     private javax.swing.JButton ingresarBtn;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton saldoBtn;
     private javax.swing.JSeparator separador;
