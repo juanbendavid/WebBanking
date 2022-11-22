@@ -163,7 +163,10 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
             cliente.getCuentas().add(new Cuenta(705000, "18-451547"));
             cliente.getTarjetas().add(new Tarjeta("3154512", 0,2000000 ));
             cliente.getTarjetas().add(new Tarjeta("124451", 500000,4000000 ));
-            
+            cliente.getServicios().add(new Servicio(0, "Tigo", 200000));
+            cliente.getServicios().add(new Servicio(1, "Ande", 650000));
+            cliente.getServicios().add(new Servicio(2, "Essap", 300000));
+            cliente.getServicios().add(new Servicio(3, "PersonalFlow", 130000));
         }
         
         return true;

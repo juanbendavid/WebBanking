@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.clases;
 
 /**
@@ -42,6 +39,9 @@ public class Servicio {
 
     public void setSaldo(int Saldo) {
         this.Saldo = Saldo;
+    }
+    public void reducirSaldo(int monto) {
+        this.Saldo-=monto;
     }
     
     

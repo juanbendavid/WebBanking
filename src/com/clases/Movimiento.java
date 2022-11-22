@@ -26,7 +26,13 @@ public class Movimiento {
         this.hora = hora;
         this.fecha = fecha;
     }
-    
+     public Movimiento(int tipo, int monto, String origen, String hora, String fecha) {
+        this.tipo = tipo;
+        this.monto = monto;
+        this.origen = origen;
+        this.hora = hora;
+        this.fecha = fecha;
+    }
     
     public Movimiento(int tipo, int monto, String idMovimiento, String destinatario, String remitente, String hora, String fecha) {
         this.tipo = tipo;

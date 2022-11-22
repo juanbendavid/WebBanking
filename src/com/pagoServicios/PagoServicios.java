@@ -5,10 +5,14 @@
 package com.pagoServicios;
 
 import com.clases.Cliente;
+import com.clases.Cuenta;
 import com.deposito.*;
 import com.login.*;
 import com.principal.Principal;
-
+import com.clases.FuncionesExtras;
+import com.clases.Movimiento;
+import java.time.LocalDate;
+import java.time.LocalTime;
 /**
  *
  * @author Juan David
@@ -27,6 +31,8 @@ public class PagoServicios extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
+        FuncionesExtras.cargarCuentas(cliente, jComboBox2);
+        FuncionesExtras.cargarServicios(cliente, jComboBox1);
     }
 
     /**
@@ -42,12 +48,12 @@ public class PagoServicios extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtCuenta = new javax.swing.JTextField();
+        txtmonto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
-        depositarBtn = new javax.swing.JButton();
+        pagarBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
+        txtDeuda = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -76,11 +82,11 @@ public class PagoServicios extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
@@ -93,19 +99,19 @@ public class PagoServicios extends javax.swing.JFrame {
                     .addGap(268, 268, 268)))
         );
 
-        txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 610));
+        txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 350, 610));
 
-        txtCuenta.setBackground(new java.awt.Color(255, 255, 255));
-        txtCuenta.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCuenta.setText("300.000");
-        txtCuenta.setToolTipText("asdasd");
-        txtCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtCuenta.addActionListener(new java.awt.event.ActionListener() {
+        txtmonto.setBackground(new java.awt.Color(255, 255, 255));
+        txtmonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtmonto.setText("100000");
+        txtmonto.setToolTipText("asdasd");
+        txtmonto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtmonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCuentaActionPerformed(evt);
+                txtmontoActionPerformed(evt);
             }
         });
-        txtclave.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 380, 20));
+        txtclave.add(txtmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 380, 20));
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -114,25 +120,29 @@ public class PagoServicios extends javax.swing.JFrame {
         txtclave.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 250, 20));
         txtclave.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 370, 20));
 
-        depositarBtn.setBackground(new java.awt.Color(0, 102, 102));
-        depositarBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        depositarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        depositarBtn.setText("Pagar");
-        depositarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        depositarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        pagarBtn.setBackground(new java.awt.Color(0, 102, 102));
+        pagarBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        pagarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        pagarBtn.setText("Pagar");
+        pagarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pagarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                depositarBtnMouseClicked(evt);
+                pagarBtnMouseClicked(evt);
             }
         });
-        depositarBtn.addActionListener(new java.awt.event.ActionListener() {
+        pagarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                depositarBtnActionPerformed(evt);
+                pagarBtnActionPerformed(evt);
             }
         });
-        txtclave.add(depositarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 150, 40));
+        txtclave.add(pagarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 150, 40));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tigo", "Ande", "Essap" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -140,11 +150,11 @@ public class PagoServicios extends javax.swing.JFrame {
         });
         txtclave.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 370, 30));
 
-        jLabel8.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("Deuda Total: Gs. 500.000");
-        txtclave.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 20));
+        txtDeuda.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
+        txtDeuda.setForeground(new java.awt.Color(0, 0, 0));
+        txtDeuda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtDeuda.setText("Deuda Total: Gs. 500.000");
+        txtclave.add(txtDeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 20));
 
         jLabel9.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -153,7 +163,6 @@ public class PagoServicios extends javax.swing.JFrame {
         txtclave.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 250, 20));
 
         jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "n° 12345 Saldo: 2.300.000", "n° 12345 Saldo: 300.000", " " }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -171,10 +180,7 @@ public class PagoServicios extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtclave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(txtclave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,28 +190,57 @@ public class PagoServicios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
+    private void txtmontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCuentaActionPerformed
+    }//GEN-LAST:event_txtmontoActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void depositarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarBtnActionPerformed
+    private void pagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_depositarBtnActionPerformed
+    }//GEN-LAST:event_pagarBtnActionPerformed
 
-    private void depositarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarBtnMouseClicked
+    private void pagarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pagarBtnMouseClicked
         // TODO add your handling code here:
+
+        int indiceServicio = jComboBox1.getSelectedIndex();
+        int indiceCuenta = jComboBox2.getSelectedIndex();
+        int deuda = cliente.getServicios().get(indiceServicio).getSaldo();
+        int monto = Integer.parseInt(txtmonto.getText());
+        // obtener hora
+        LocalDate fecha = LocalDate.now();
+        LocalTime hora = LocalTime.now();
+        
+        
+        
+        Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
+
+        if(monto>0 & cuentaCliente.getSaldo()-monto>=0 & deuda-monto>=0){
+            cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
+            cliente.getServicios().get(indiceServicio).reducirSaldo(monto);   // se reduce la deuda del Servicio
+            // creacion de movimiento realizado
+            Movimiento movimiento = new Movimiento(4, monto,
+                    cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString());
+            
+            cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
+        }
+        
         Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_depositarBtnMouseClicked
+    }//GEN-LAST:event_pagarBtnMouseClicked
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        int indice = jComboBox1.getSelectedIndex();
+        txtDeuda.setText("Deuda Total: " + cliente.getServicios().get(indice).getSaldo());
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -246,18 +281,18 @@ public class PagoServicios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton depositarBtn;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton pagarBtn;
     private javax.swing.JSeparator separador1;
-    private javax.swing.JTextField txtCuenta;
+    private javax.swing.JLabel txtDeuda;
     private javax.swing.JPanel txtclave;
+    private javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
 }

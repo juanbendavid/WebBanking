@@ -1,14 +1,13 @@
 package com.clases;
 
-
 import java.util.ArrayList;
-
 
 /**
  *
  * @author Rodrigo
  */
 public class Cliente {
+
     private String nombre;
     private String idCliente;
     private String pinCuenta;
@@ -18,9 +17,10 @@ public class Cliente {
     private ArrayList<Servicio> servicios;
 
     // contructor por defecto
-    public Cliente(){
+    public Cliente() {
         this.cuentas = new ArrayList<>();
         this.tarjetas = new ArrayList<>();
+        this.servicios = new ArrayList<>();
     }
     public Cliente(String nombre, String idCliente, String pinCuenta, String pinTransferencia, ArrayList<Cuenta> cuentas, ArrayList<Tarjeta> tarjetas) {
         this.nombre = nombre;
@@ -29,6 +29,14 @@ public class Cliente {
         this.pinTransferencia = pinTransferencia;
         this.cuentas = cuentas;
         this.tarjetas = tarjetas;
+    }
+
+    public ArrayList<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(ArrayList<Servicio> servicios) {
+        this.servicios = servicios;
     }
 
     public String getNombre() {
@@ -78,5 +86,5 @@ public class Cliente {
     public void setTarjetas(ArrayList<Tarjeta> tarjetas) {
         this.tarjetas = tarjetas;
     }
-    
+
 }
