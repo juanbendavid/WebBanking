@@ -13,17 +13,19 @@ public class Cuenta {
     private int saldo;
     private ArrayList<Movimiento> movimientos;
     private String idCuenta;
-    private int pinCuenta;
+    private String pinCuenta;
 
     public Cuenta(String idCuenta) {
         this.idCuenta = idCuenta;
         this.movimientos = new ArrayList<>();
     }
 
-    public Cuenta(int saldo, String idCuenta) {
+    
+    public Cuenta(int saldo, String idCuenta, String pinCuenta) {
         this.saldo = saldo;
         this.idCuenta = idCuenta;
         this.movimientos = new ArrayList<>();
+        this.pinCuenta = pinCuenta;
     }
     
     public Cuenta(int saldo, ArrayList<Movimiento> movimientos, String idCuenta) {
@@ -31,6 +33,15 @@ public class Cuenta {
         this.movimientos = movimientos;
         this.idCuenta = idCuenta;
     }
+
+    public String getPinCuenta() {
+        return pinCuenta;
+    }
+
+    public void setPinCuenta(String pinCuenta) {
+        this.pinCuenta = pinCuenta;
+    }
+    
     
     public int getSaldo() {
         return saldo;

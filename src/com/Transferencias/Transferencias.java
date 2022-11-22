@@ -205,7 +205,8 @@ public class Transferencias extends javax.swing.JFrame {
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indice);
         int monto = Integer.parseInt(txtmonto.getText());
-
+        
+        
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();

@@ -150,7 +150,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
         
         System.out.println("verificando...");
         
-        if (validación(idCliente, password) == 0){
+        if (validación(idCliente, password)){
            
             
             // datos de prueba
@@ -158,9 +158,9 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
             cliente.setNombre("Juan David");
             cliente.setPinCuenta("444");
             cliente.setPinTransferencia("12345");
-            cliente.getCuentas().add(new Cuenta(500000, "14-15451"));
-            cliente.getCuentas().add(new Cuenta(10000, "15-45187"));
-            cliente.getCuentas().add(new Cuenta(705000, "18-451547"));
+            cliente.getCuentas().add(new Cuenta(500000, "14-15451", "12345"));
+            cliente.getCuentas().add(new Cuenta(10000, "15-45187", "54321"));
+            cliente.getCuentas().add(new Cuenta(705000, "18-451547", "11111"));
             cliente.getTarjetas().add(new Tarjeta("3154512", 0,2000000 ));
             cliente.getTarjetas().add(new Tarjeta("124451", 500000,4000000 ));
             cliente.getServicios().add(new Servicio(0, "Tigo", 200000));
@@ -238,7 +238,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public int validación(String pin1, String pin2) {
-        return 0;
+    public boolean validación(String pin1, String pin2) {
+        return true;
     }
 }
