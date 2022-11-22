@@ -12,12 +12,13 @@ import com.principal.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
+import com.clases.ValidarPinDeTransacción;
 
 /**
  *
  * @author Juan David
  */
-public class PagoTarjeta extends javax.swing.JFrame  {
+public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTransacción {
 
     /**
      * Creates new form login
@@ -203,11 +204,17 @@ public class PagoTarjeta extends javax.swing.JFrame  {
         // TODO add your handling code here:
         
         JOptionPane ventanaPin = new JOptionPane();
-        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
-        
-        
         int indiceTarjeta = jComboBox1.getSelectedIndex();
         int indiceCuenta = jComboBox2.getSelectedIndex();
+        Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
+        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
+       
+        if(!validación(inPin, cuentaCliente.getPinCuenta())){
+            JOptionPane.showMessageDialog(null,
+                    "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         int deuda = cliente.getTarjetas().get(indiceTarjeta).getDeuda();
         int monto = Integer.parseInt(txtmonto.getText());
         // obtener hora
@@ -215,9 +222,6 @@ public class PagoTarjeta extends javax.swing.JFrame  {
         LocalTime hora = LocalTime.now();
         
         
-        
-        Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
-
         if(monto>0 & cuentaCliente.getSaldo()-monto>=0 & deuda-monto>=0){
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getTarjetas().get(indiceTarjeta).reducirDeuda(monto);   // se reduce la deuda de la tarjeta
@@ -312,4 +316,9 @@ public class PagoTarjeta extends javax.swing.JFrame  {
     private javax.swing.JLabel txtdeuda;
     private javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public boolean validación(String pin1, String pin2) {
+        return pin1.equals(pin2);
+    }
 }

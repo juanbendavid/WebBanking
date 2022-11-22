@@ -4,6 +4,7 @@ import com.clases.Cliente;
 import com.clases.Cuenta;
 import com.clases.FuncionesExtras;
 import com.clases.Movimiento;
+import com.clases.ValidarPinDeTransacción;
 import com.deposito.*;
 import com.login.*;
 import com.principal.Principal;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Juan David
  */
-public class Transferencias extends javax.swing.JFrame {
+public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTransacción{
 
     /**
      * Creates new form login
@@ -199,14 +200,18 @@ public class Transferencias extends javax.swing.JFrame {
 
         JOptionPane ventanaPin = new JOptionPane();
         String inPin = ventanaPin.showInputDialog("Ingrese su pin");
-        // validacion de pin
-
-        String iDcuenta = txtCuenta.getText();
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indice);
+        // validacion de pin
+
+        if(!validación(inPin, cuentaCliente.getPinCuenta())){
+            JOptionPane.showMessageDialog(null,
+                    "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String iDcuenta = txtCuenta.getText();
         int monto = Integer.parseInt(txtmonto.getText());
-        
-        
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
@@ -290,4 +295,9 @@ public class Transferencias extends javax.swing.JFrame {
     private javax.swing.JPanel txtclave;
     private javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public boolean validación(String pin1, String pin2) {
+        return pin1.equals(pin2);
+    }
 }

@@ -5,6 +5,7 @@ import com.principal.Principal;
 
 import com.clases.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Juan David
@@ -94,7 +95,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
 
         txtCedula.setBackground(new java.awt.Color(255, 255, 255));
         txtCedula.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCedula.setText("usuario");
+        txtCedula.setText("5611898");
         txtCedula.setToolTipText("asdasd");
         txtCedula.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +115,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
 
         jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setText("12345");
         jPasswordField1.setBorder(null);
         txtclave.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 370, -1));
 
@@ -151,12 +152,10 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
         System.out.println("verificando...");
         
         if (validación(idCliente, password)){
-           
-            
             // datos de prueba
             cliente = new Cliente();
             cliente.setNombre("Juan David");
-            cliente.setPinCuenta("444");
+            cliente.setPinCuenta("12345");
             cliente.setPinTransferencia("12345");
             cliente.getCuentas().add(new Cuenta(500000, "14-15451", "12345"));
             cliente.getCuentas().add(new Cuenta(10000, "15-45187", "54321"));
@@ -167,9 +166,9 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
             cliente.getServicios().add(new Servicio(1, "Ande", 650000));
             cliente.getServicios().add(new Servicio(2, "Essap", 300000));
             cliente.getServicios().add(new Servicio(3, "PersonalFlow", 130000));
+            return true;
         }
-        
-        return true;
+        return false;
     }
     
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
@@ -183,6 +182,9 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
             Principal ventanaPrincipal = new Principal(cliente);
             ventanaPrincipal.setVisible(true);
             this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null,
+                    "Error", "Error de Login", JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_ingresarBtnMouseClicked
@@ -239,6 +241,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
 
     @Override
     public boolean validación(String pin1, String pin2) {
+        // use database
         return true;
     }
 }
