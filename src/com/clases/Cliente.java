@@ -15,6 +15,7 @@ public class Cliente {
     private String pinTransferencia;
     private ArrayList<Cuenta> cuentas;
     private ArrayList<Tarjeta> tarjetas;
+    private ArrayList<Servicio> servicios;
 
     // contructor por defecto
     public Cliente(){

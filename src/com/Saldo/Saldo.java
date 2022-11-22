@@ -12,6 +12,7 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import com.clases.FuncionesExtras;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,6 +38,7 @@ public class Saldo extends javax.swing.JFrame {
         initComponents();
         this.cliente= cargarClienteBD(cliente);   
         this.setLocationRelativeTo(null);
+        FuncionesExtras.cargarCuentas(cliente, jComboBox1);
         String[] titulo = new String[]{"Remitente", "Destino", "Nombre", "Fecha"};
         dtm.setColumnIdentifiers(titulo);
         jTable1.setModel(dtm);
@@ -58,6 +60,7 @@ public class Saldo extends javax.swing.JFrame {
         txtBienvenido = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -137,7 +140,15 @@ public class Saldo extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        panelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 780, 370));
+        panelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 770, 320));
+
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        panelPrincipal.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 180, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,6 +191,10 @@ public class Saldo extends javax.swing.JFrame {
         ventanaLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ingresarBtnMouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,6 +245,7 @@ public class Saldo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ingresarBtn;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
