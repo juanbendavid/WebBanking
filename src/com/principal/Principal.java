@@ -3,6 +3,7 @@ package com.principal;
 
 import com.Transferencias.Transferencias;
 import com.clases.Cliente;
+import com.Saldo.Saldo;
 import com.deposito.Deposito;
 import com.login.*;
 import com.pagoServicios.PagoServicios;
@@ -45,9 +46,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        txtPago = new javax.swing.JPanel();
+        panelPrincipal = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         ingresarBtn = new javax.swing.JButton();
@@ -68,10 +67,6 @@ public class Principal extends javax.swing.JFrame {
         imageServicios = new javax.swing.JLabel();
         txtTransacciones2 = new javax.swing.JLabel();
 
-        jMenuItem1.setText("jMenuItem1");
-
-        jMenuItem2.setText("jMenuItem2");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -79,9 +74,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        txtPago.setBackground(new java.awt.Color(255, 255, 255));
-        txtPago.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtPago.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        panelPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -100,41 +95,42 @@ public class Principal extends javax.swing.JFrame {
                 ingresarBtnMouseClicked(evt);
             }
         });
+        ingresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(ingresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(390, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ingresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(379, 379, 379))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(ingresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(206, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(268, 268, 268)))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ingresarBtn)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        txtPago.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 920, 110));
+        panelPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 920, 100));
 
         txtBienvenido.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
         txtBienvenido.setForeground(new java.awt.Color(0, 0, 0));
         txtBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtBienvenido.setText("Bienvenido Rodrigo Salinas");
-        txtPago.add(txtBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 540, -1));
+        panelPrincipal.add(txtBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 540, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -146,24 +142,24 @@ public class Principal extends javax.swing.JFrame {
                 jLabel5MouseMoved(evt);
             }
         });
-        txtPago.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 150, -1));
+        panelPrincipal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 150, -1));
 
         contenedor.setToolTipText("");
         contenedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtPago.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 340, 150));
-        txtPago.add(separador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, 20));
+        panelPrincipal.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 340, 150));
+        panelPrincipal.add(separador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, 20));
 
         jLabel7.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Su saldo actual es");
-        txtPago.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 250, -1));
+        panelPrincipal.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 250, -1));
 
         txtNroCuenta.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
         txtNroCuenta.setForeground(new java.awt.Color(102, 102, 102));
         txtNroCuenta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtNroCuenta.setText("Cuenta n° 46-7154546");
-        txtPago.add(txtNroCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 250, -1));
+        panelPrincipal.add(txtNroCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 250, -1));
 
         imageDeposito.setText("imageDeposito");
         imageDeposito.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -176,7 +172,7 @@ public class Principal extends javax.swing.JFrame {
                 imageDepositoMouseClicked(evt);
             }
         });
-        txtPago.add(imageDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 70, 70));
+        panelPrincipal.add(imageDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 70, 70));
 
         txtSaldoActual.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         txtSaldoActual.setForeground(new java.awt.Color(0, 0, 0));
@@ -188,7 +184,7 @@ public class Principal extends javax.swing.JFrame {
                 txtSaldoActualMouseMoved(evt);
             }
         });
-        txtPago.add(txtSaldoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 340, -1));
+        panelPrincipal.add(txtSaldoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 340, -1));
 
         imageSaldo.setText("imageDeposito");
         imageSaldo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -201,7 +197,7 @@ public class Principal extends javax.swing.JFrame {
                 imageSaldoMouseClicked(evt);
             }
         });
-        txtPago.add(imageSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 70, 70));
+        panelPrincipal.add(imageSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 70, 70));
 
         txtSaldo.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         txtSaldo.setForeground(new java.awt.Color(0, 0, 0));
@@ -213,7 +209,7 @@ public class Principal extends javax.swing.JFrame {
                 txtSaldoMouseMoved(evt);
             }
         });
-        txtPago.add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 150, -1));
+        panelPrincipal.add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 150, -1));
 
         imageTransaccion.setText("imageDeposito");
         imageTransaccion.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -226,7 +222,7 @@ public class Principal extends javax.swing.JFrame {
                 imageTransaccionMouseClicked(evt);
             }
         });
-        txtPago.add(imageTransaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 70, 70));
+        panelPrincipal.add(imageTransaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 70, 70));
 
         txtTransacciones.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         txtTransacciones.setForeground(new java.awt.Color(0, 0, 0));
@@ -238,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
                 txtTransaccionesMouseMoved(evt);
             }
         });
-        txtPago.add(txtTransacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 150, -1));
+        panelPrincipal.add(txtTransacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 150, -1));
 
         imageTarjeta.setText("imageDeposito");
         imageTarjeta.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -251,7 +247,7 @@ public class Principal extends javax.swing.JFrame {
                 imageTarjetaMouseClicked(evt);
             }
         });
-        txtPago.add(imageTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 70, 70));
+        panelPrincipal.add(imageTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 70, 70));
 
         txtTransacciones1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         txtTransacciones1.setForeground(new java.awt.Color(0, 0, 0));
@@ -263,7 +259,7 @@ public class Principal extends javax.swing.JFrame {
                 txtTransacciones1MouseMoved(evt);
             }
         });
-        txtPago.add(txtTransacciones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 150, -1));
+        panelPrincipal.add(txtTransacciones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 150, -1));
 
         imageServicios.setText("imageDeposito");
         imageServicios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -276,7 +272,7 @@ public class Principal extends javax.swing.JFrame {
                 imageServiciosMouseClicked(evt);
             }
         });
-        txtPago.add(imageServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, 70, 70));
+        panelPrincipal.add(imageServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, 70, 70));
 
         txtTransacciones2.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         txtTransacciones2.setForeground(new java.awt.Color(0, 0, 0));
@@ -288,17 +284,20 @@ public class Principal extends javax.swing.JFrame {
                 txtTransacciones2MouseMoved(evt);
             }
         });
-        txtPago.add(txtTransacciones2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 220, -1));
+        panelPrincipal.add(txtTransacciones2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 220, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -358,6 +357,9 @@ public class Principal extends javax.swing.JFrame {
     private void imageSaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSaldoMouseClicked
         // TODO add your handling code here:
         
+        Saldo saldo = new Saldo(cliente);
+        saldo.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_imageSaldoMouseClicked
 
     private void txtSaldoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSaldoMouseMoved
@@ -413,6 +415,10 @@ public class Principal extends javax.swing.JFrame {
     private void txtTransacciones2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTransacciones2MouseMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTransacciones2MouseMoved
+
+    private void ingresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingresarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,13 +480,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel panelPrincipal;
     private javax.swing.JSeparator separador;
     private javax.swing.JLabel txtBienvenido;
     private javax.swing.JLabel txtNroCuenta;
-    private javax.swing.JPanel txtPago;
     private javax.swing.JLabel txtSaldo;
     private javax.swing.JLabel txtSaldoActual;
     private javax.swing.JLabel txtTransacciones;
