@@ -193,7 +193,7 @@ public class Deposito extends javax.swing.JFrame {
         
         //pasar cliente modificado a funcion para commit en BD
         
-        Principal ventanaPrincipal = new Principal(cliente);
+        Principal ventanaPrincipal = new Principal(cliente, indice);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_depositarBtnMouseClicked

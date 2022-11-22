@@ -229,7 +229,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         }
 
         
-        Principal ventanaPrincipal = new Principal(cliente);
+        Principal ventanaPrincipal = new Principal(cliente,indice);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_transferirBtnMouseClicked

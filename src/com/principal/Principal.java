@@ -31,11 +31,11 @@ public class Principal extends javax.swing.JFrame {
         
     }
     
-    public Principal(Cliente cliente) {
+    public Principal(Cliente cliente, int indice) {
         initComponents();
         this.cliente= cargarClienteBD(cliente); 
         FuncionesExtras.cargarCuentasPrincipal(cliente, jComboBox1);
-        mostrarDatos();
+        mostrarDatos(indice);
         this.setLocationRelativeTo(null);
         txtBienvenido.setText("Bienvenido " + this.cliente.getNombre()); // Título de bienvenida
     }
@@ -481,9 +481,9 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     
-     private void mostrarDatos() {
+     private void mostrarDatos(int indice) {
         
-        txtNroCuenta.setText("Cuenta N° " + cliente.getCuentas().get(0).getIdCuenta());
+        txtNroCuenta.setText("Cuenta N° " + cliente.getCuentas().get(indice).getIdCuenta());
         txtSaldoActual.setText(cliente.getCuentas().get(0).getSaldo() +"");
     }
     public void setImageLabel(JLabel labelname, String root){

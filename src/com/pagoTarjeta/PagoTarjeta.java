@@ -233,7 +233,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
         }
         
-        Principal ventanaPrincipal = new Principal(cliente);
+        Principal ventanaPrincipal = new Principal(cliente, indiceCuenta);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_pagarTarjetaBtnActionPerformed
@@ -244,9 +244,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
     private void pagarTarjetaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pagarTarjetaBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal(cliente);
-        ventanaPrincipal.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_pagarTarjetaBtnMouseClicked
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged

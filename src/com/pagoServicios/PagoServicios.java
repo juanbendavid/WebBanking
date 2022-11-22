@@ -241,7 +241,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
         }
         
-        Principal ventanaPrincipal = new Principal(cliente);
+        Principal ventanaPrincipal = new Principal(cliente,indiceCuenta);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_pagarBtnMouseClicked
