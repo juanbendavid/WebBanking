@@ -17,6 +17,19 @@ public class Cuenta {
     private ArrayList<Movimiento> movimientos;
     private String idCuenta;
 
+    public Cuenta(String idCuenta) {
+        this.idCuenta = idCuenta;
+        this.movimientos = new ArrayList<>();
+    }
+
+    public Cuenta(int saldo, String idCuenta) {
+        this.saldo = saldo;
+        this.idCuenta = idCuenta;
+        this.movimientos = new ArrayList<>();
+    }
+
+    
+    
     public Cuenta(int saldo, ArrayList<Movimiento> movimientos, String idCuenta) {
         this.saldo = saldo;
         this.movimientos = movimientos;

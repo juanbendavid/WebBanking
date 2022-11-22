@@ -18,7 +18,8 @@ public class Cliente {
 
     // contructor por defecto
     public Cliente(){
-        
+        this.cuentas = new ArrayList<>();
+        this.tarjetas = new ArrayList<>();
     }
     public Cliente(String nombre, String idCliente, String pinCuenta, String pinTransferencia, ArrayList<Cuenta> cuentas, ArrayList<Tarjeta> tarjetas) {
         this.nombre = nombre;

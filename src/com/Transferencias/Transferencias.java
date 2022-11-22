@@ -1,10 +1,15 @@
-
 package com.Transferencias;
 
 import com.clases.Cliente;
+import com.clases.Cuenta;
+import com.clases.FuncionesExtras;
+import com.clases.Movimiento;
 import com.deposito.*;
 import com.login.*;
 import com.principal.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,16 +21,17 @@ public class Transferencias extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
-    
-     private Cliente cliente;
+    private Cliente cliente;
 
     public Transferencias() {
-        
+
     }
+
     public Transferencias(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
+        FuncionesExtras.cargarCuentas(cliente, jComboBox1);
     }
 
     /**
@@ -44,11 +50,11 @@ public class Transferencias extends javax.swing.JFrame {
         txtCuenta = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
-        depositarBtn = new javax.swing.JButton();
+        transferirBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         separador3 = new javax.swing.JSeparator();
-        txtCedula1 = new javax.swing.JTextField();
+        txtmonto = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,25 +119,24 @@ public class Transferencias extends javax.swing.JFrame {
         txtclave.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 20));
         txtclave.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 370, 20));
 
-        depositarBtn.setBackground(new java.awt.Color(0, 102, 102));
-        depositarBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        depositarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        depositarBtn.setText("Transferir");
-        depositarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        depositarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        transferirBtn.setBackground(new java.awt.Color(0, 102, 102));
+        transferirBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        transferirBtn.setForeground(new java.awt.Color(255, 255, 255));
+        transferirBtn.setText("Transferir");
+        transferirBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        transferirBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                depositarBtnMouseClicked(evt);
+                transferirBtnMouseClicked(evt);
             }
         });
-        depositarBtn.addActionListener(new java.awt.event.ActionListener() {
+        transferirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                depositarBtnActionPerformed(evt);
+                transferirBtnActionPerformed(evt);
             }
         });
-        txtclave.add(depositarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 150, 40));
+        txtclave.add(transferirBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 150, 40));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "n° 12345 Saldo: 300.000", "n° 54-248742 Saldo: 1.000.000", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -146,17 +151,16 @@ public class Transferencias extends javax.swing.JFrame {
         txtclave.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 290, 20));
         txtclave.add(separador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 370, 20));
 
-        txtCedula1.setBackground(new java.awt.Color(255, 255, 255));
-        txtCedula1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCedula1.setText("600.000");
-        txtCedula1.setToolTipText("600.000");
-        txtCedula1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtCedula1.addActionListener(new java.awt.event.ActionListener() {
+        txtmonto.setBackground(new java.awt.Color(255, 255, 255));
+        txtmonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtmonto.setToolTipText("");
+        txtmonto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtmonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedula1ActionPerformed(evt);
+                txtmontoActionPerformed(evt);
             }
         });
-        txtclave.add(txtCedula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 380, 20));
+        txtclave.add(txtmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 380, 20));
 
         jLabel9.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -186,26 +190,47 @@ public class Transferencias extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void depositarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarBtnActionPerformed
+    private void transferirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferirBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_depositarBtnActionPerformed
+    }//GEN-LAST:event_transferirBtnActionPerformed
 
-    private void depositarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarBtnMouseClicked
+    private void transferirBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferirBtnMouseClicked
         // TODO add your handling code here:
-        
+
         JOptionPane ventanaPin = new JOptionPane();
         String inPin = ventanaPin.showInputDialog("Ingrese su pin");
-       
+        // validacion de pin
+
+        String iDcuenta = txtCuenta.getText();
+        int indice = jComboBox1.getSelectedIndex();
+        Cuenta cuentaCliente = cliente.getCuentas().get(indice);
+        int monto = Integer.parseInt(txtmonto.getText());
+
+        // obtener hora
+        LocalDate fecha = LocalDate.now();
+        LocalTime hora = LocalTime.now();
+
+        // crea el movimiento realizado
+        Movimiento movimiento = new Movimiento(1, monto, iDcuenta,
+                cuentaCliente.getIdCuenta(),
+                hora.toString(), fecha.toString());
         
+        // validar operacion
+        if (cuentaCliente.getSaldo() - monto >= 0) {
+            cuentaCliente.setSaldo(cuentaCliente.getSaldo() - monto); // se actualiza el saldo
+            // se agrega el movimiento a la cuenta destino y a la cuenta origen
+            cuentaCliente.addMovimiento(movimiento);
+        }
+
         
         Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_depositarBtnMouseClicked
+    }//GEN-LAST:event_transferirBtnMouseClicked
 
-    private void txtCedula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedula1ActionPerformed
+    private void txtmontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedula1ActionPerformed
+    }//GEN-LAST:event_txtmontoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,7 +275,6 @@ public class Transferencias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton depositarBtn;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -260,8 +284,9 @@ public class Transferencias extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separador1;
     private javax.swing.JSeparator separador3;
-    private javax.swing.JTextField txtCedula1;
+    private javax.swing.JButton transferirBtn;
     private javax.swing.JTextField txtCuenta;
     private javax.swing.JPanel txtclave;
+    private javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
 }

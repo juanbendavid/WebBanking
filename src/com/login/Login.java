@@ -151,19 +151,19 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
         System.out.println("verificando...");
         
         if (validación(idCliente, password) == 0){
-            ArrayList<Cuenta> cuentas= new ArrayList<>();
-            ArrayList<Movimiento> movimientos = new ArrayList<>();
-            ArrayList<Tarjeta> tarjetas = new ArrayList<>();
-            cuentas.add(new Cuenta(200000, movimientos, "1"));
-            cuentas.add(new Cuenta(5030343, movimientos, "2"));
+           
             
-            
+            // datos de prueba
             cliente = new Cliente();
             cliente.setNombre("Juan David");
-            cliente.setPinCuenta("11-44444");
+            cliente.setPinCuenta("444");
             cliente.setPinTransferencia("12345");
-            cliente.setCuentas(cuentas);
-            cliente.setTarjetas(tarjetas);
+            cliente.getCuentas().add(new Cuenta(500000, "14-15451"));
+            cliente.getCuentas().add(new Cuenta(10000, "15-45187"));
+            cliente.getCuentas().add(new Cuenta(705000, "18-451547"));
+            cliente.getTarjetas().add(new Tarjeta("3154512", 0,2000000 ));
+            cliente.getTarjetas().add(new Tarjeta("124451", 500000,4000000 ));
+            
         }
         
         return true;

@@ -1,6 +1,6 @@
 
 package com.deposito;
-
+import com.clases.FuncionesExtras;
 import com.clases.Cliente;
 import com.clases.Cuenta;
 import com.clases.Movimiento;
@@ -29,7 +29,7 @@ public class Deposito extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
-        cargarCuentas();
+        FuncionesExtras.cargarCuentas(cliente, jComboBox1);
         
     }
 
@@ -180,12 +180,10 @@ public class Deposito extends javax.swing.JFrame {
         Integer monto = Integer.parseInt(txtmonto.getText()); // monto indicado
         Integer actual = cliente.getCuentas().get(indice).getSaldo();   // obtiene saldo actual
         cliente.getCuentas().get(indice).setSaldo(actual+monto);        //aumenta saldo en el objeto instanciado
-        // funcion para aumentar saldo en BD
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
         // crea un nuevo movimiento
-        
         Movimiento movimiento = new Movimiento(0, monto, cuenta.getIdCuenta(),
                 cuenta.getIdCuenta(), hora.toString(), fecha.toString());
         
@@ -200,12 +198,6 @@ public class Deposito extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_depositarBtnMouseClicked
 
-    private void cargarCuentas() {
-        ArrayList<Cuenta> arrayList = cliente.getCuentas();
-        for (Cuenta cuenta : arrayList) {
-            jComboBox1.addItem("N° " + cuenta.getIdCuenta() + " Saldo: " + cuenta.getSaldo());
-        }
-    }
     
     
         /**
