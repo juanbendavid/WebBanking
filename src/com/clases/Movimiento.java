@@ -18,6 +18,16 @@ public class Movimiento {
     private String hora;
     private String fecha;
 
+    public Movimiento(int tipo, int monto, String destinatario, String origen, String hora, String fecha) {
+        this.tipo = tipo;
+        this.monto = monto;
+        this.destinatario = destinatario;
+        this.origen = origen;
+        this.hora = hora;
+        this.fecha = fecha;
+    }
+    
+    
     public Movimiento(int tipo, int monto, String idMovimiento, String destinatario, String remitente, String hora, String fecha) {
         this.tipo = tipo;
         this.monto = monto;

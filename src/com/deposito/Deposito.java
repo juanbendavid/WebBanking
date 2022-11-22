@@ -3,8 +3,11 @@ package com.deposito;
 
 import com.clases.Cliente;
 import com.clases.Cuenta;
+import com.clases.Movimiento;
 import com.login.*;
 import com.principal.Principal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
@@ -175,10 +178,22 @@ public class Deposito extends javax.swing.JFrame {
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuenta = cliente.getCuentas().get(indice); // cuenta selececionada
         Integer monto = Integer.parseInt(txtmonto.getText()); // monto indicado
-        Integer actual = cliente.getCuentas().get(indice).getSaldo();
-        cliente.getCuentas().get(indice).setSaldo(actual+monto);
-        System.out.println(cuenta + " " + monto);
+        Integer actual = cliente.getCuentas().get(indice).getSaldo();   // obtiene saldo actual
+        cliente.getCuentas().get(indice).setSaldo(actual+monto);        //aumenta saldo en el objeto instanciado
         // funcion para aumentar saldo en BD
+        // obtener hora
+        LocalDate fecha = LocalDate.now();
+        LocalTime hora = LocalTime.now();
+        // crea un nuevo movimiento
+        
+        Movimiento movimiento = new Movimiento(0, monto, cuenta.getIdCuenta(),
+                cuenta.getIdCuenta(), hora.toString(), fecha.toString());
+        
+        
+        
+        cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
+        
+        //pasar cliente modificado a funcion para commit en BD
         
         Principal ventanaPrincipal = new Principal(cliente);
         ventanaPrincipal.setVisible(true);

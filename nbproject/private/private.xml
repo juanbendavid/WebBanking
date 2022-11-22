@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/clases/Cuenta.java</file>
             <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/login/Login.java</file>
             <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/principal/Principal.java</file>
+            <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/pagoTarjeta/PagoTarjeta.java</file>
+            <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/clases/ValidarPinDeCuetna.java</file>
+            <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/pagoServicios/PagoServicios.java</file>
             <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/Transferencias/Transferencias.java</file>
+            <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/clases/Cliente.java</file>
+            <file>file:/C:/Users/Juan%20David/Documents/NetBeansProjects/WebBanking/src/com/deposito/Deposito.java</file>
         </group>
     </open-files>
 </project-private>
