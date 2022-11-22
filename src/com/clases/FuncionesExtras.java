@@ -31,4 +31,12 @@ public class FuncionesExtras {
         }
     }
     
+    public static void cargarCuentasPrincipal(Cliente cliente, JComboBox jComboBox) {
+        ArrayList<Cuenta> arrayList = cliente.getCuentas();
+        int i = 0;
+        for (Cuenta cuenta : arrayList) {
+            jComboBox.addItem(++i);
+        }
+    }
+    
 }

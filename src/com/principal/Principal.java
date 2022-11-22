@@ -3,6 +3,7 @@ package com.principal;
 
 import com.Transferencias.Transferencias;
 import com.clases.Cliente;
+import com.clases.FuncionesExtras;
 import com.Saldo.Saldo;
 import com.deposito.Deposito;
 import com.login.*;
@@ -32,9 +33,11 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal(Cliente cliente) {
         initComponents();
-        this.cliente= cargarClienteBD(cliente);   
-        mostrarBienvenida();
+        this.cliente= cargarClienteBD(cliente); 
+        FuncionesExtras.cargarCuentasPrincipal(cliente, jComboBox1);
+        mostrarDatos();
         this.setLocationRelativeTo(null);
+        txtBienvenido.setText("Bienvenido " + this.cliente.getNombre()); // Título de bienvenida
     }
 
     /**
@@ -66,6 +69,7 @@ public class Principal extends javax.swing.JFrame {
         txtTransacciones1 = new javax.swing.JLabel();
         imageServicios = new javax.swing.JLabel();
         txtTransacciones2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -286,6 +290,19 @@ public class Principal extends javax.swing.JFrame {
         });
         panelPrincipal.add(txtTransacciones2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 220, -1));
 
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        panelPrincipal.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 20, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -417,6 +434,17 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ingresarBtnActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        int indice = jComboBox1.getSelectedIndex();
+        txtNroCuenta.setText("Cuenta N° " + cliente.getCuentas().get(indice).getIdCuenta());
+        txtSaldoActual.setText(cliente.getCuentas().get(indice).getSaldo() +"");
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -453,8 +481,8 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     
-     private void mostrarBienvenida() {
-        txtBienvenido.setText("Bienvenido " + this.cliente.getNombre()); // Título de bienvenida
+     private void mostrarDatos() {
+        
         txtNroCuenta.setText("Cuenta N° " + cliente.getCuentas().get(0).getIdCuenta());
         txtSaldoActual.setText(cliente.getCuentas().get(0).getSaldo() +"");
     }
@@ -474,6 +502,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel imageTarjeta;
     private javax.swing.JLabel imageTransaccion;
     private javax.swing.JButton ingresarBtn;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
