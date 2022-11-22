@@ -44,7 +44,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtclave = new javax.swing.JPanel();
+        txtpanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -57,19 +57,22 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         separador3 = new javax.swing.JSeparator();
         txtmonto = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtDescr = new javax.swing.JTextField();
+        separador2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        txtclave.setBackground(new java.awt.Color(255, 255, 255));
-        txtclave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtclave.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        txtpanel.setBackground(new java.awt.Color(255, 255, 255));
+        txtpanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Transferencia entre Cuentas");
-        txtclave.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 500, -1));
+        txtpanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 500, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -99,7 +102,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                     .addGap(268, 268, 268)))
         );
 
-        txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 610));
+        txtpanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 610));
 
         txtCuenta.setBackground(new java.awt.Color(255, 255, 255));
         txtCuenta.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -111,14 +114,14 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 txtCuentaActionPerformed(evt);
             }
         });
-        txtclave.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 380, 20));
+        txtpanel.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 380, 20));
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Seleccione una cuenta");
-        txtclave.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 20));
-        txtclave.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 370, 20));
+        txtpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 20));
+        txtpanel.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 370, 20));
 
         transferirBtn.setBackground(new java.awt.Color(0, 102, 102));
         transferirBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -135,7 +138,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 transferirBtnActionPerformed(evt);
             }
         });
-        txtclave.add(transferirBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 150, 40));
+        txtpanel.add(transferirBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 150, 40));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -143,14 +146,14 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 jComboBox1ActionPerformed(evt);
             }
         });
-        txtclave.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 370, 30));
+        txtpanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 370, 30));
 
         jLabel7.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Número de Cuenta Destinatario");
-        txtclave.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 290, 20));
-        txtclave.add(separador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 370, 20));
+        txtpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 290, 20));
+        txtpanel.add(separador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 370, 20));
 
         txtmonto.setBackground(new java.awt.Color(255, 255, 255));
         txtmonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -161,23 +164,42 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 txtmontoActionPerformed(evt);
             }
         });
-        txtclave.add(txtmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 380, 20));
+        txtpanel.add(txtmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 380, 20));
 
         jLabel9.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Monto");
-        txtclave.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 20));
+        txtpanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 20));
+
+        jLabel8.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("Descripción");
+        txtpanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 290, 20));
+
+        txtDescr.setBackground(new java.awt.Color(255, 255, 255));
+        txtDescr.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtDescr.setText("pago de préstamo");
+        txtDescr.setToolTipText("asdasd");
+        txtDescr.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtDescr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescrActionPerformed(evt);
+            }
+        });
+        txtpanel.add(txtDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 380, 20));
+        txtpanel.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 370, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtclave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtclave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -212,14 +234,16 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         
         String iDcuenta = txtCuenta.getText();
         int monto = Integer.parseInt(txtmonto.getText());
+        String descripcion = txtDescr.getText();
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
 
         // crea el movimiento realizado
-        Movimiento movimiento = new Movimiento(1, monto, iDcuenta,
+        Movimiento movimiento = new Movimiento("Transferencia entre Cuentas", monto, iDcuenta,
+                cliente.getCuentas().get(indice).getIdCuenta(),
                 cuentaCliente.getIdCuenta(),
-                hora.toString(), fecha.toString());
+                hora.toString(), fecha.toString(), descripcion);
         
         // validar operacion
         if (cuentaCliente.getSaldo() - monto >= 0) {
@@ -237,6 +261,10 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
     private void txtmontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtmontoActionPerformed
+
+    private void txtDescrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescrActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,14 +314,17 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separador1;
+    private javax.swing.JSeparator separador2;
     private javax.swing.JSeparator separador3;
     private javax.swing.JButton transferirBtn;
     private javax.swing.JTextField txtCuenta;
-    private javax.swing.JPanel txtclave;
+    private javax.swing.JTextField txtDescr;
     private javax.swing.JTextField txtmonto;
+    private javax.swing.JPanel txtpanel;
     // End of variables declaration//GEN-END:variables
 
     @Override

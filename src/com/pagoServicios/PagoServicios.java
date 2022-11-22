@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.pagoServicios;
 
 import com.clases.Cliente;
@@ -218,25 +215,20 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
             return;
         }
         
-        
-        
         int deuda = cliente.getServicios().get(indiceServicio).getSaldo();
         int monto = Integer.parseInt(txtmonto.getText());
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
-        
-        
-        
-        
        
 
         if(monto>0 & cuentaCliente.getSaldo()-monto>=0 & deuda-monto>=0){
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getServicios().get(indiceServicio).reducirSaldo(monto);   // se reduce la deuda del Servicio
             // creacion de movimiento realizado
-            Movimiento movimiento = new Movimiento(4, monto,
-                    cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString());
+            Movimiento movimiento = new Movimiento("Pago de Servicio", monto,
+                    cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString(),
+                    jComboBox1.getSelectedItem().toString());
             
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
         }

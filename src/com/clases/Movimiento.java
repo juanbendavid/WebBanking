@@ -10,7 +10,8 @@ package com.clases;
  * @author Rodrigo
  */
 public class Movimiento {
-    private int tipo;
+    private String tipo;
+    private String descripcion;
     private int monto;
     private String idMovimiento;
     private String destinatario;
@@ -18,23 +19,27 @@ public class Movimiento {
     private String hora;
     private String fecha;
 
-    public Movimiento(int tipo, int monto, String destinatario, String origen, String hora, String fecha) {
+    
+    public Movimiento(String tipo, int monto, String destinatario, String origen, String hora, String fecha, String descripcion) {
         this.tipo = tipo;
         this.monto = monto;
         this.destinatario = destinatario;
         this.origen = origen;
         this.hora = hora;
         this.fecha = fecha;
+        this.descripcion = descripcion;
     }
-     public Movimiento(int tipo, int monto, String origen, String hora, String fecha) {
+    
+    public Movimiento(String tipo, int monto, String origen, String hora, String fecha, String descripcion) {
         this.tipo = tipo;
         this.monto = monto;
         this.origen = origen;
         this.hora = hora;
         this.fecha = fecha;
+        this.descripcion = descripcion;
     }
     
-    public Movimiento(int tipo, int monto, String idMovimiento, String destinatario, String remitente, String hora, String fecha) {
+    public Movimiento(String tipo, int monto, String idMovimiento, String destinatario, String remitente, String hora, String fecha, String descripcion) {
         this.tipo = tipo;
         this.monto = monto;
         this.idMovimiento = idMovimiento;
@@ -42,13 +47,31 @@ public class Movimiento {
         this.origen = remitente;
         this.hora = hora;
         this.fecha = fecha;
+        this.descripcion = descripcion;
     }
 
-    public int getTipo() {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

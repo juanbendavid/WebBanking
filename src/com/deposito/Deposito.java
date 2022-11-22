@@ -184,10 +184,9 @@ public class Deposito extends javax.swing.JFrame {
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
         // crea un nuevo movimiento
-        Movimiento movimiento = new Movimiento(0, monto, cuenta.getIdCuenta(),
-                cuenta.getIdCuenta(), hora.toString(), fecha.toString());
         
-        
+        Movimiento movimiento = new Movimiento("Deposito", monto, cuenta.getIdCuenta(),
+                 hora.toString(), fecha.toString(), "");
         
         cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
         

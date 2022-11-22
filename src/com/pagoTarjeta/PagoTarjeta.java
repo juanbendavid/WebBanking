@@ -226,7 +226,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getTarjetas().get(indiceTarjeta).reducirDeuda(monto);   // se reduce la deuda de la tarjeta
             // creacion de movimiento realizado
-            Movimiento movimiento = new Movimiento(3, monto,
+            Movimiento movimiento = new Movimiento("Pago de Tarjeta de Crédito", monto,
                     cliente.getTarjetas().get(indiceTarjeta).getIdTarjeta(),
                     cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString());
             
