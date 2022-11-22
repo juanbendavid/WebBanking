@@ -215,6 +215,7 @@ public class PagoServicios extends javax.swing.JFrame {
         
         
         
+        
         Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
 
         if(monto>0 & cuentaCliente.getSaldo()-monto>=0 & deuda-monto>=0){
