@@ -8,6 +8,7 @@ import com.login.*;
 import com.principal.Principal;
 import com.clases.*;
 import com.clases.Movimiento;
+import com.comprobante.Comprobante;
 import java.awt.Image;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -294,6 +295,8 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
             return;
         }
         
+        
+        
         int deuda = cliente.getServicios().get(indiceServicio).getSaldo();
         int monto=0;
         try {
@@ -306,7 +309,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
-
+        
         if (monto > 0 & cuentaCliente.getSaldo() - monto >= 0 & deuda - monto >= 0) {
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getServicios().get(indiceServicio).reducirSaldo(monto);   // se reduce la deuda del Servicio
@@ -316,9 +319,13 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
                     jComboBox1.getSelectedItem().toString());
 
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
-            Principal ventanaPrincipal = new Principal(cliente, indiceCuenta,db);
+            Principal ventanaPrincipal = new Principal(cliente, indiceCuenta, db);
             ventanaPrincipal.setVisible(true);
             this.dispose();
+
+            Comprobante comprobante = new Comprobante(movimiento);
+            comprobante.setVisible(true);
+            
         } else {
              JOptionPane.showMessageDialog(null,
                     "Monto inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);

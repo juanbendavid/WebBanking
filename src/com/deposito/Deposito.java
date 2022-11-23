@@ -7,6 +7,7 @@ import com.clases.Cuenta;
 import com.clases.Movimiento;
 import com.login.*;
 import com.clases.*;
+import com.comprobante.Comprobante;
 import com.principal.Principal;
 import java.awt.Image;
 import java.time.LocalDate;
@@ -308,7 +309,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
             LocalTime hora = LocalTime.now();
 
             // crea un nuevo movimiento
-            Movimiento movimiento = new Movimiento("Deposito", monto, cuenta.getIdCuenta(),
+            Movimiento movimiento = new Movimiento("Deposito", monto,cliente.getCuentas().get(indice).getIdCuenta(), "",
                     hora.toString(), fecha.toString(), txtDescr.getText());
 
             cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
@@ -325,9 +326,12 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
             
             
             //pasar cliente modificado a funcion para commit en BD
-            Principal ventanaPrincipal = new Principal(cliente, indice,db);
+            Principal ventanaPrincipal = new Principal(cliente, indice, db);
             ventanaPrincipal.setVisible(true);
             this.dispose();
+
+            Comprobante comprobante = new Comprobante(movimiento);
+            comprobante.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null,
                     "Monto inválido", "Error de Deposito", JOptionPane.WARNING_MESSAGE);

@@ -44,6 +44,7 @@ public class Comprobante extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         descripcion = new javax.swing.JLabel();
         hora = new javax.swing.JLabel();
+        cancelarBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -102,6 +103,23 @@ public class Comprobante extends javax.swing.JFrame {
         hora.setForeground(new java.awt.Color(0, 0, 0));
         hora.setText("hora");
 
+        cancelarBtn1.setBackground(new java.awt.Color(255, 255, 255));
+        cancelarBtn1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        cancelarBtn1.setForeground(new java.awt.Color(0, 102, 102));
+        cancelarBtn1.setText("Cancelar");
+        cancelarBtn1.setActionCommand("Cerrar");
+        cancelarBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarBtn1MouseClicked(evt);
+            }
+        });
+        cancelarBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,15 +127,16 @@ public class Comprobante extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelarBtn1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(123, 123, 123)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(122, 122, 122)
-                                .addComponent(idDestinatario)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -128,16 +147,18 @@ public class Comprobante extends javax.swing.JFrame {
                         .addComponent(monto))
                     .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fecha)))
-                        .addGap(86, 86, 86)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(fecha)
+                        .addGap(80, 80, 80)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(hora)))
+                        .addComponent(hora))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(idDestinatario)
+                        .addGap(228, 228, 228)))
                 .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
@@ -164,7 +185,9 @@ public class Comprobante extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarBtn1))
                 .addGap(12, 12, 12))
         );
 
@@ -184,9 +207,20 @@ public class Comprobante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancelarBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtn1MouseClicked
+        // TODO add your handling code here:
+        
+        this.dispose();
+    }//GEN-LAST:event_cancelarBtn1MouseClicked
+
+    private void cancelarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarBtn1ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelarBtn1;
     private javax.swing.JLabel descripcion;
     private javax.swing.JLabel fecha;
     private javax.swing.JLabel hora;

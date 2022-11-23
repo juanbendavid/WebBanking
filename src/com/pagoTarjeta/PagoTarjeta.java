@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import com.clases.ValidarPinDeTransacción;
+import com.comprobante.Comprobante;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -29,11 +30,12 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
      */
     private Cliente cliente;
     private BaseDeDatos db;
+
     public PagoTarjeta() {
 
     }
 
-    public PagoTarjeta(Cliente cliente,  BaseDeDatos db) {
+    public PagoTarjeta(Cliente cliente, BaseDeDatos db) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
@@ -293,13 +295,13 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         }
 
         int deuda = cliente.getTarjetas().get(indiceTarjeta).getDeuda();
-        int monto=0;
+        int monto = 0;
         try {
             monto = Integer.parseInt(txtmonto.getText());
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null,
-                        "Monto no válido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
-             return;
+            JOptionPane.showMessageDialog(null,
+                    "Monto no válido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+            return;
         }
         // obtener hora
         LocalDate fecha = LocalDate.now();
@@ -308,31 +310,29 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         if (monto > 0 & cuentaCliente.getSaldo() - monto >= 0 & deuda - monto >= 0) {
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getTarjetas().get(indiceTarjeta).reducirDeuda(monto);   // se reduce la deuda de la tarjeta
-            
+
             // creacion de movimiento realizado
-            
             Movimiento movimiento = new Movimiento("Pago de Tarjeta de Crédito", monto,
                     cliente.getTarjetas().get(indiceTarjeta).getIdTarjeta(),
                     cliente.getCuentas().get(indiceCuenta).getIdCuenta(),
-                    cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString());
-            
-            
+                    hora.toString(), fecha.toString(), "");
+
             try {
                 db.actualizarCuenta(cliente.getCuentas().get(indiceCuenta));
                 db.actualizarTarjeta(cliente.getTarjetas().get(indiceTarjeta));
-                
+
             } catch (Exception e) {
             }
-            
-            
-            
 
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
             Principal ventanaPrincipal = new Principal(cliente, indiceCuenta, db);
             ventanaPrincipal.setVisible(true);
             this.dispose();
-        }else{
-             JOptionPane.showMessageDialog(null,
+
+            Comprobante comprobante = new Comprobante(movimiento);
+            comprobante.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null,
                     "Monto inválido", "Error de Pago de Tarjeta", JOptionPane.WARNING_MESSAGE);
         }
 
@@ -377,7 +377,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         // TODO add your handling code here:
     }//GEN-LAST:event_imageLogoMouseClicked
 
-     private void cambiarImagen(JLabel label, String cadena) {
+    private void cambiarImagen(JLabel label, String cadena) {
         setImageLabel(label, "src/com/images/" + cadena);
     }
 
@@ -388,7 +388,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         labelname.setIcon(icon);
         this.repaint();
     }
-    
+
     /**
      * @param args the command line arguments
      */

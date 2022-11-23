@@ -460,9 +460,8 @@ public class BaseDeDatos {
         c11.setSaldo(50000);
         //B1.actualizarCuenta(c11);
         t1.setDeuda(30000);
-        t1.setSaldo(10);
+        t1.setSaldo(600000);
         B1.actualizarTarjeta(t1);
-        s1.setSaldo(1);
         B1.actualizarServicios(s1);
     }
   
