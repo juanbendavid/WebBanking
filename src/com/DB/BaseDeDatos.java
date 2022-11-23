@@ -80,12 +80,12 @@ public class BaseDeDatos {
                 + "CONSTRAINT \"Cuentas_FK_idCliente\" FOREIGN KEY(idCliente) REFERENCES Clientes(idCliente)\n);";
         
         String sqlT4 = "CREATE TABLE IF NOT EXISTS Movimientos (\n"
-                + "idMovimiento TEXT NOT NULL PRIMARY KEY,\n"
+                + "idMovimiento INTEGER NOT NULL PRIMARY KEY,\n"
                 + "idRemitente TEXT,\n"
                 + "idDestinatario TEXT,\n"
                 + "monto INTEGER NOT NULL,\n"
-                + "Fecha DATE NOT NULL,\n"
-                + "Hora TIME NOT NULL,\n"
+                + "Fecha TEXT NOT NULL,\n"
+                + "Hora TEXT NOT NULL,\n"
                 + "descripcion TEXT NOT NULL,\n"
                 + "concepto TEXT NOT NULL,\n"
                 + "CONSTRAINT \"Movimientos_FK_idRemitente\" FOREIGN KEY(idRemitente) REFERENCES Clientes(idCliente),\n"
@@ -155,22 +155,22 @@ public class BaseDeDatos {
     }
     
     public void agregarMovimiento(Movimiento movimiento) {
-        String sql = "INSERT INTO Movimientos VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Movimientos(idRemitente, idDestinatario,monto,"
+                + "Fecha,Hora,descripcion, concepto) VALUES(?,?,?,?,?,?,?)";
         try{  
-            PreparedStatement pstmt = miconexion.prepareStatement(sql);  
-            pstmt.setString(1, movimiento.getIdMovimiento());  
-            pstmt.setString(2, movimiento.getRemitente());
-            pstmt.setString(3, movimiento.getDestinatario());  
-            pstmt.setInt(4, movimiento.getMonto());  
-            pstmt.setString(5, movimiento.getFecha());
-            pstmt.setString(6, movimiento.getHora());
-            pstmt.setString(7, movimiento.getDescripcion());
-            pstmt.setString(8, movimiento.getTipo());
+            PreparedStatement pstmt = miconexion.prepareStatement(sql); 
+            pstmt.setString(1, movimiento.getRemitente());
+            pstmt.setString(2, movimiento.getDestinatario());  
+            pstmt.setInt(3, movimiento.getMonto());  
+            pstmt.setString(4, movimiento.getFecha());
+            pstmt.setString(5, movimiento.getHora());
+            pstmt.setString(6, movimiento.getDescripcion());
+            pstmt.setString(7, movimiento.getTipo());
             pstmt.executeUpdate();  
         } 
         catch (SQLException e) {  
             System.out.println(e.getMessage());  
-        } 
+        }
     }
     
     public void agregarServicio(Servicio servicio, String idCliente) {
@@ -186,6 +186,35 @@ public class BaseDeDatos {
         catch (SQLException e) {  
             System.out.println(e.getMessage());  
         } 
+    }
+    
+    public Cuenta buscarCuentaBD(String idCuenta) {
+        String sql = "SELECT * FROM Cuentas WHERE idCuenta = ?";
+        
+        try{
+            PreparedStatement pstmt  = miconexion.prepareStatement(sql);
+            // Establecer los valores a buscar
+            pstmt.setString(1,idCuenta);
+            
+            // Hacer la busqueda 
+            ResultSet resultado  = pstmt.executeQuery();
+            
+            if (resultado.next()) { // Si tiene por lo menos un elemento
+                String pinTrans = resultado.getString(3);
+                int monto = resultado.getInt(4);
+                ArrayList<Movimiento> movimientos = buscarMovimientosBD(idCuenta);
+                
+                // Inicializar una clase cliente
+                Cuenta cuenta = new Cuenta(monto, movimientos, idCuenta);
+                cuenta.setPinCuenta(pinTrans);
+                return cuenta;
+            }
+        } 
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        // Tirar una excepcion en el caso de que nigun cliente fue encontrado 
+        throw new IllegalArgumentException("No existe cuenta con el id dado");
     }
     
     public ArrayList<Cuenta> buscarCuentasBD(String idCliente) {
@@ -238,7 +267,7 @@ public class BaseDeDatos {
             
             // Iterar por los resultados y crear e agregar las clases cuentas a la lista de movimientos  
             while (resultado.next()) {  
-                String idMovimiento = resultado.getString(1);
+                int idMovimiento = resultado.getInt(1);
                 String idRemitente = resultado.getString(2);
                 String idDestinatario = resultado.getString(3);
                 int monto = resultado.getInt(4);
@@ -322,6 +351,8 @@ public class BaseDeDatos {
         }
         return null;
     }
+    
+    
     
     public Cliente buscarClienteBD(String idCliente, String pinCuenta) {
         String sql = "SELECT * FROM Clientes WHERE idCliente = ? AND pinCuenta = ?";
@@ -414,10 +445,12 @@ public class BaseDeDatos {
         BaseDeDatos B1 = new BaseDeDatos("jdbc:sqlite:database.db", "database.db");
         Cliente tom = new Cliente("Juan", "5611898", "12345", null, null);
         Tarjeta t1 = new Tarjeta("154184", 2000, 1000);
-        Movimiento m1 = new Movimiento("pago de Servicio", 1000, "adss", "3454236", null, "19:35:22", "2022-11-22", "tigo");
+        Movimiento m1 = new Movimiento("pago de Servicio", 1000, 54, "3454236", null, "19:35:22", "2022-11-22", "tigo");
         Cuenta c11 = new Cuenta(5000, "264562", "12345");
         Servicio s1 = new Servicio(15646, "tigo", 1000);
        
+        
+        
         B1.agregarCliente(tom);
         B1.agregarTarjeta(t1, tom.getIdCliente());
         B1.agregarMovimiento(m1);
@@ -430,7 +463,6 @@ public class BaseDeDatos {
         B1.actualizarTarjeta(t1);
         s1.setSaldo(1);
         B1.actualizarServicios(s1);
-        
     }
   
     

@@ -326,17 +326,15 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
 
         String iDcuenta = txtCuenta.getText();
         int monto = Integer.parseInt(txtmonto.getText());
-        String descripcion = txtDescr.getText();
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
-
+        
+        
+        Movimiento movimiento = new Movimiento("Transferencias entre cuentas",
+                monto, cuentaDestino.getIdCuenta(), cuentaCliente.getIdCuenta(), hora.toString(),
+                fecha.toString(), txtDescr.getText());
         // crea el movimiento realizado
-        Movimiento movimiento = new Movimiento("Transferencia entre Cuentas", monto, iDcuenta,
-                cliente.getCuentas().get(indice).getIdCuenta(),
-                cuentaCliente.getIdCuenta(),
-                hora.toString(), fecha.toString(), descripcion);
-
         // validar operacion
         if (cuentaCliente.getSaldo() - monto >= 0 && monto > 0) {
             try {

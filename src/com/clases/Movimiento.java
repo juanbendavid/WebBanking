@@ -9,12 +9,17 @@ public class Movimiento {
     private String tipo;
     private String descripcion;
     private int monto;
-    private String idMovimiento;
+    private int idMovimiento;
     private String destinatario;
     private String origen;
     private String hora;
     private String fecha;
 
+    public Movimiento() {
+    }
+
+    
+    
     
     public Movimiento(String tipo, int monto, String destinatario, String origen, String hora, String fecha, String descripcion) {
         this.tipo = tipo;
@@ -35,7 +40,7 @@ public class Movimiento {
         this.descripcion = descripcion;
     }
     
-    public Movimiento(String tipo, int monto, String idMovimiento, String destinatario, String remitente, String hora, String fecha, String descripcion) {
+    public Movimiento(String tipo, int monto, int idMovimiento, String destinatario, String remitente, String hora, String fecha, String descripcion) {
         this.tipo = tipo;
         this.monto = monto;
         this.idMovimiento = idMovimiento;
@@ -71,11 +76,11 @@ public class Movimiento {
         this.tipo = tipo;
     }
 
-    public String getIdMovimiento() {
+    public int getIdMovimiento() {
         return idMovimiento;
     }
 
-    public void setIdMovimiento(String idMovimiento) {
+    public void setIdMovimiento(int idMovimiento) {
         this.idMovimiento = idMovimiento;
     }
 
