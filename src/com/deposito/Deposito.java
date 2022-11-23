@@ -279,7 +279,14 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuenta = cliente.getCuentas().get(indice); // cuenta selececionada
-        Integer monto = Integer.parseInt(txtmonto.getText()); // monto indicado
+        int monto=0;
+        try {
+            monto = Integer.parseInt(txtmonto.getText());
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,
+                        "Monto no válido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+             return;
+        }
 
         JOptionPane ventanaPin = new JOptionPane();
         String inPin = ventanaPin.showInputDialog("Ingrese su pin");

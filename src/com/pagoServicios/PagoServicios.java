@@ -293,9 +293,16 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
         } catch (Exception e) {
             return;
         }
-
+        
         int deuda = cliente.getServicios().get(indiceServicio).getSaldo();
-        int monto = Integer.parseInt(txtmonto.getText());
+        int monto=0;
+        try {
+            monto = Integer.parseInt(txtmonto.getText());
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,
+                        "Monto no válido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+             return;
+        }
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();

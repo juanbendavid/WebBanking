@@ -293,7 +293,14 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         }
 
         int deuda = cliente.getTarjetas().get(indiceTarjeta).getDeuda();
-        int monto = Integer.parseInt(txtmonto.getText());
+        int monto=0;
+        try {
+            monto = Integer.parseInt(txtmonto.getText());
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,
+                        "Monto no válido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+             return;
+        }
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();

@@ -54,7 +54,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
 
         txtpanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtCuenta = new javax.swing.JTextField();
+        txtCuentaDes = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -86,17 +86,17 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         jLabel4.setText("Transferencia entre Cuentas");
         txtpanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 500, -1));
 
-        txtCuenta.setBackground(new java.awt.Color(255, 255, 255));
-        txtCuenta.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCuenta.setText("14-21541245");
-        txtCuenta.setToolTipText("asdasd");
-        txtCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtCuenta.addActionListener(new java.awt.event.ActionListener() {
+        txtCuentaDes.setBackground(new java.awt.Color(255, 255, 255));
+        txtCuentaDes.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCuentaDes.setText("14-21541245");
+        txtCuentaDes.setToolTipText("asdasd");
+        txtCuentaDes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtCuentaDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCuentaActionPerformed(evt);
+                txtCuentaDesActionPerformed(evt);
             }
         });
-        txtpanel.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 380, 20));
+        txtpanel.add(txtCuentaDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 380, 20));
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -286,9 +286,9 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
+    private void txtCuentaDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaDesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCuentaActionPerformed
+    }//GEN-LAST:event_txtCuentaDesActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -304,33 +304,54 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
 
     private void transferirBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferirBtn1MouseClicked
         // TODO add your handling code here:
-        JOptionPane ventanaPin = new JOptionPane();
-        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
+        
+       
+        
+        
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indice);
-        
+        String iDcuenta = txtCuentaDes.getText();
         Cuenta cuentaDestino = new Cuenta(); // retorna cuenta de BD
-        
-        
-        // validacion de pin
-
+        int monto=0;
         try {
+            monto = Integer.parseInt(txtmonto.getText());
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,
+                        "Monto no válido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+             return;
+        }
+        // obtener hora
+        LocalDate fecha = LocalDate.now();
+        LocalTime hora = LocalTime.now();
+        
+        try {
+            FuncionesExtras.Distinto(iDcuenta, cuentaCliente.getIdCuenta());
+
+            cuentaDestino = db.buscarCuentaBD(txtCuentaDes.getText());
+        } catch (Exception e) {
+              JOptionPane.showMessageDialog(null,
+                        e.getMessage(), "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+              return;
+        }
+        
+        JOptionPane ventanaPin = new JOptionPane();
+        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
+
+        // validacion de pin
+        try {
+            
+            
             if (!validación(inPin, cuentaCliente.getPinCuenta())) {
                 JOptionPane.showMessageDialog(null,
                         "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,
+                        e.getMessage(), "Error de Transacción", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        String iDcuenta = txtCuenta.getText();
-        int monto = Integer.parseInt(txtmonto.getText());
-        // obtener hora
-        LocalDate fecha = LocalDate.now();
-        LocalTime hora = LocalTime.now();
-        
-        
         Movimiento movimiento = new Movimiento("Transferencias entre cuentas",
                 monto, cuentaDestino.getIdCuenta(), cuentaCliente.getIdCuenta(), hora.toString(),
                 fecha.toString(), txtDescr.getText());
@@ -338,18 +359,15 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         // validar operacion
         if (cuentaCliente.getSaldo() - monto >= 0 && monto > 0) {
             try {
-                FuncionesExtras.Distinto(iDcuenta, cuentaCliente.getIdCuenta());
+
                 cuentaCliente.reducirSaldo(monto); // se actualiza el saldo
                 // se agrega el movimiento a la cuenta destino y a la cuenta origen
                 cliente.getCuentas().get(indice).addMovimiento(movimiento);
-                
-                
-                
+
                 db.actualizarCuenta(cliente.getCuentas().get(indice));
+
                 db.agregarMovimiento(movimiento);
-                
-                
-                
+
                 Principal ventanaPrincipal = new Principal(cliente, indice, db);
                 ventanaPrincipal.setVisible(true);
                 this.dispose();
@@ -458,7 +476,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
     private javax.swing.JSeparator separador2;
     private javax.swing.JSeparator separador3;
     private javax.swing.JButton transferirBtn1;
-    private javax.swing.JTextField txtCuenta;
+    private javax.swing.JTextField txtCuentaDes;
     private javax.swing.JTextField txtDescr;
     private javax.swing.JTextField txtmonto;
     private javax.swing.JPanel txtpanel;

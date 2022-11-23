@@ -44,4 +44,8 @@ public class FuncionesExtras {
             throw new Exception("Cuenta remitente y origen iguales");
         }
     }
+    
+    public static void comprobante(Movimiento movimiento){
+        
+    }
 }
