@@ -442,12 +442,13 @@ public class BaseDeDatos {
     }
     
     public static void main(String[] args) {
+        
         BaseDeDatos B1 = new BaseDeDatos("jdbc:sqlite:database.db", "database.db");
-        Cliente tom = new Cliente("Juan", "5611898", "12345", null, null);
-        Tarjeta t1 = new Tarjeta("154184", 2000, 1000);
-        Movimiento m1 = new Movimiento("pago de Servicio", 1000, 54, "3454236", null, "19:35:22", "2022-11-22", "tigo");
-        Cuenta c11 = new Cuenta(10000, "55555", "54321");
-        Servicio s1 = new Servicio(15646, "tigo", 1000);
+        Cliente tom = new Cliente("Francisco", "5611897", "11111", null, null);
+        Tarjeta t1 = new Tarjeta("1233", 500000, 100000);
+        //Movimiento m1 = new Movimiento("pago de Servicio", 1000, 55, "3454236", null, "19:35:22", "2022-11-22", "tigo");
+        Cuenta c11 = new Cuenta(10000, "22222", "33333");
+        Servicio s1 = new Servicio(15648, "ANDE", 10000);
        
         
         
@@ -455,14 +456,14 @@ public class BaseDeDatos {
         //B1.agregarCliente(tom);
         //B1.agregarTarjeta(t1, tom.getIdCliente());
         //B1.agregarMovimiento(m1);
-        B1.agregarCuenta(c11, "5611898");
-        //B1.agregarServicio(s1, "5611898");
-        c11.setSaldo(50000);
+        B1.agregarCuenta(c11, "5611897");
+        B1.agregarServicio(s1, "5611897");
+        //c11.setSaldo(50000);
         //B1.actualizarCuenta(c11);
-        t1.setDeuda(30000);
-        t1.setSaldo(600000);
-        B1.actualizarTarjeta(t1);
-        B1.actualizarServicios(s1);
+        //t1.setDeuda(30000);
+        //t1.setSaldo(600000);
+        //B1.actualizarTarjeta(t1);
+        //B1.actualizarServicios(s1);
     }
   
     

@@ -364,9 +364,12 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 cuentaCliente.reducirSaldo(monto); // se actualiza el saldo
                 // se agrega el movimiento a la cuenta destino y a la cuenta origen
                 cliente.getCuentas().get(indice).addMovimiento(movimiento);
-
+                cuentaDestino.addMovimiento(movimiento);
+                
                 db.actualizarCuenta(cliente.getCuentas().get(indice));
                 db.agregarMovimiento(movimiento);
+                cuentaDestino.aumentarSaldo(monto);
+                db.actualizarCuenta(cuentaDestino);
                 
                 Principal ventanaPrincipal = new Principal(cliente, indice, db);
                 ventanaPrincipal.setVisible(true);

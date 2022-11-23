@@ -64,8 +64,6 @@ public class Principal extends javax.swing.JFrame {
         txtNroCuenta = new javax.swing.JLabel();
         imageDeposito = new javax.swing.JLabel();
         txtSaldoActual = new javax.swing.JLabel();
-        imageSaldo = new javax.swing.JLabel();
-        txtSaldo = new javax.swing.JLabel();
         imageTransaccion = new javax.swing.JLabel();
         txtTransacciones = new javax.swing.JLabel();
         imageTarjeta = new javax.swing.JLabel();
@@ -154,7 +152,7 @@ public class Principal extends javax.swing.JFrame {
                 jLabel5MouseMoved(evt);
             }
         });
-        panelPrincipal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 150, -1));
+        panelPrincipal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 150, -1));
 
         contenedor.setToolTipText("");
         contenedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -184,7 +182,7 @@ public class Principal extends javax.swing.JFrame {
                 imageDepositoMouseClicked(evt);
             }
         });
-        panelPrincipal.add(imageDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 70, 70));
+        panelPrincipal.add(imageDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 70, 70));
 
         txtSaldoActual.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         txtSaldoActual.setForeground(new java.awt.Color(0, 0, 0));
@@ -198,31 +196,6 @@ public class Principal extends javax.swing.JFrame {
         });
         panelPrincipal.add(txtSaldoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 340, -1));
 
-        imageSaldo.setText("imageDeposito");
-        imageSaldo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                imageSaldoMouseMoved(evt);
-            }
-        });
-        imageSaldo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imageSaldoMouseClicked(evt);
-            }
-        });
-        panelPrincipal.add(imageSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 70, 70));
-
-        txtSaldo.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        txtSaldo.setForeground(new java.awt.Color(0, 0, 0));
-        txtSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtSaldo.setText("Saldo");
-        txtSaldo.setToolTipText("");
-        txtSaldo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                txtSaldoMouseMoved(evt);
-            }
-        });
-        panelPrincipal.add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 150, -1));
-
         imageTransaccion.setText("imageDeposito");
         imageTransaccion.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -234,7 +207,7 @@ public class Principal extends javax.swing.JFrame {
                 imageTransaccionMouseClicked(evt);
             }
         });
-        panelPrincipal.add(imageTransaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 70, 70));
+        panelPrincipal.add(imageTransaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 70, 70));
 
         txtTransacciones.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         txtTransacciones.setForeground(new java.awt.Color(0, 0, 0));
@@ -284,7 +257,7 @@ public class Principal extends javax.swing.JFrame {
                 imageServiciosMouseClicked(evt);
             }
         });
-        panelPrincipal.add(imageServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, 70, 70));
+        panelPrincipal.add(imageServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 70, 70));
 
         txtTransacciones2.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         txtTransacciones2.setForeground(new java.awt.Color(0, 0, 0));
@@ -296,7 +269,7 @@ public class Principal extends javax.swing.JFrame {
                 txtTransacciones2MouseMoved(evt);
             }
         });
-        panelPrincipal.add(txtTransacciones2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 220, -1));
+        panelPrincipal.add(txtTransacciones2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, 220, -1));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
@@ -341,7 +314,6 @@ public class Principal extends javax.swing.JFrame {
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         // TODO add your handling code here:
          cambiarImagen(imageDeposito, "wallet.png");
-         cambiarImagen(imageSaldo, "saldo.png");
          cambiarImagen(imageTransaccion, "transaction.png");
          cambiarImagen(imageServicios, "servicios.png");
          cambiarImagen(imageTarjeta, "tarjeta.png");
@@ -362,24 +334,6 @@ public class Principal extends javax.swing.JFrame {
     private void txtSaldoActualMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSaldoActualMouseMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSaldoActualMouseMoved
-
-    private void imageSaldoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSaldoMouseMoved
-        // TODO add your handling code here:
-        cambiarImagen(imageSaldo, "saldo_move.png");
-    }//GEN-LAST:event_imageSaldoMouseMoved
-
-    private void imageSaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSaldoMouseClicked
-        // TODO add your handling code here:
-        
-        Saldo saldo = new Saldo(cliente);
-        saldo.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_imageSaldoMouseClicked
-
-    private void txtSaldoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSaldoMouseMoved
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtSaldoMouseMoved
 
     private void imageTransaccionMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageTransaccionMouseMoved
         // TODO add your handling code here:
@@ -459,6 +413,7 @@ public class Principal extends javax.swing.JFrame {
         Login ventanaLogin = new Login();
         ventanaLogin.setVisible(true);
         this.dispose();
+        db.desconectar();
     }//GEN-LAST:event_ingresarBtnMouseClicked
 
     /**
@@ -514,7 +469,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel contenedor;
     private javax.swing.JLabel imageDeposito;
     private javax.swing.JLabel imageLogo;
-    private javax.swing.JLabel imageSaldo;
     private javax.swing.JLabel imageServicios;
     private javax.swing.JLabel imageTarjeta;
     private javax.swing.JLabel imageTransaccion;
@@ -527,7 +481,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSeparator separador;
     private javax.swing.JLabel txtBienvenido;
     private javax.swing.JLabel txtNroCuenta;
-    private javax.swing.JLabel txtSaldo;
     private javax.swing.JLabel txtSaldoActual;
     private javax.swing.JLabel txtTransacciones;
     private javax.swing.JLabel txtTransacciones1;
