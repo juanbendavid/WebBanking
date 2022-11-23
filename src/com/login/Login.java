@@ -1,7 +1,7 @@
 package com.login;
 
 import com.principal.Principal;
-
+import com.DB.BaseDeDatos;
 import com.clases.*;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -352,6 +352,9 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
     @Override
     public boolean validación(String pin1, String pin2) {
         // use database
+        
+        
+        
         return true;
     }
 }
