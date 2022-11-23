@@ -140,7 +140,6 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
         txtmonto.setBackground(new java.awt.Color(255, 255, 255));
         txtmonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtmonto.setText("100000");
         txtmonto.setToolTipText("asdasd");
         txtmonto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtmonto.addActionListener(new java.awt.event.ActionListener() {

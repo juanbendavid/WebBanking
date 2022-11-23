@@ -92,7 +92,6 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
 
         txtCuentaDes.setBackground(new java.awt.Color(255, 255, 255));
         txtCuentaDes.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCuentaDes.setText("14-21541245");
         txtCuentaDes.setToolTipText("asdasd");
         txtCuentaDes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtCuentaDes.addActionListener(new java.awt.event.ActionListener() {
@@ -370,15 +369,22 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         if (cuentaCliente.getSaldo() - monto >= 0 && monto > 0) {
             try {
 
-                cuentaCliente.reducirSaldo(monto); // se actualiza el saldo
+                cliente.getCuentas().get(indice).reducirSaldo(monto); // se actualiza el saldo
+                cuentaDestino.aumentarSaldo(monto);
+                cuentaDestino.addMovimiento(movimiento);
                 // se agrega el movimiento a la cuenta destino y a la cuenta origen
                 cliente.getCuentas().get(indice).addMovimiento(movimiento);
-                cuentaDestino.addMovimiento(movimiento);
+                
+                
                 
                 db.actualizarCuenta(cliente.getCuentas().get(indice));
                 db.agregarMovimiento(movimiento);
-                cuentaDestino.aumentarSaldo(monto);
+                
                 db.actualizarCuenta(cuentaDestino);
+                System.out.println(cuentaDestino.getSaldo());
+                
+                cliente = db.buscarClienteBD(cliente.getIdCliente(), cliente.getPinCuenta());
+                
                 
                 Principal ventanaPrincipal = new Principal(cliente, indice, db);
                 ventanaPrincipal.setVisible(true);

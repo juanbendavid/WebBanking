@@ -86,7 +86,6 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
         txtmonto.setBackground(new java.awt.Color(255, 255, 255));
         txtmonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtmonto.setText("500000");
         txtmonto.setToolTipText("asdasd");
         txtmonto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtmonto.addActionListener(new java.awt.event.ActionListener() {

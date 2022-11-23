@@ -89,8 +89,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
         txtmonto.setBackground(new java.awt.Color(255, 255, 255));
         txtmonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtmonto.setText("50000");
-        txtmonto.setToolTipText("asdasd");
+        txtmonto.setToolTipText("");
         txtmonto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtmonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
