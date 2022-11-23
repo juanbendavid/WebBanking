@@ -29,11 +29,12 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
      */
     private Cliente cliente;
     private BaseDeDatos db;
+
     public Transferencias() {
 
     }
 
-    public Transferencias(Cliente cliente,  BaseDeDatos db) {
+    public Transferencias(Cliente cliente, BaseDeDatos db) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.db = db;
@@ -307,6 +308,10 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         String inPin = ventanaPin.showInputDialog("Ingrese su pin");
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indice);
+        
+        Cuenta cuentaDestino = new Cuenta(); // retorna cuenta de BD
+        
+        
         // validacion de pin
 
         try {
@@ -333,19 +338,27 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 hora.toString(), fecha.toString(), descripcion);
 
         // validar operacion
-        if (cuentaCliente.getSaldo() - monto >= 0 && monto>0) {
+        if (cuentaCliente.getSaldo() - monto >= 0 && monto > 0) {
             try {
                 FuncionesExtras.Distinto(iDcuenta, cuentaCliente.getIdCuenta());
-                cuentaCliente.setSaldo(cuentaCliente.getSaldo() - monto); // se actualiza el saldo
+                cuentaCliente.reducirSaldo(monto); // se actualiza el saldo
                 // se agrega el movimiento a la cuenta destino y a la cuenta origen
-                cuentaCliente.addMovimiento(movimiento);
+                cliente.getCuentas().get(indice).addMovimiento(movimiento);
+                
+                
+                
+                db.actualizarCuenta(cliente.getCuentas().get(indice));
+                db.agregarMovimiento(movimiento);
+                
+                
+                
+                Principal ventanaPrincipal = new Principal(cliente, indice, db);
+                ventanaPrincipal.setVisible(true);
+                this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,
-                        e.getCause(), "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+                        e.getMessage(), "Error de Transacción", JOptionPane.WARNING_MESSAGE);
             }
-            Principal ventanaPrincipal = new Principal(cliente, indice, db);
-            ventanaPrincipal.setVisible(true);
-            this.dispose();
 
         } else {
             JOptionPane.showMessageDialog(null,

@@ -270,7 +270,6 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
@@ -302,10 +301,24 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         if (monto > 0 & cuentaCliente.getSaldo() - monto >= 0 & deuda - monto >= 0) {
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getTarjetas().get(indiceTarjeta).reducirDeuda(monto);   // se reduce la deuda de la tarjeta
+            
             // creacion de movimiento realizado
+            
             Movimiento movimiento = new Movimiento("Pago de Tarjeta de Crédito", monto,
                     cliente.getTarjetas().get(indiceTarjeta).getIdTarjeta(),
+                    cliente.getCuentas().get(indiceCuenta).getIdCuenta(),
                     cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString());
+            
+            
+            try {
+                db.actualizarCuenta(cliente.getCuentas().get(indiceCuenta));
+                db.actualizarTarjeta(cliente.getTarjetas().get(indiceTarjeta));
+                
+            } catch (Exception e) {
+            }
+            
+            
+            
 
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
             Principal ventanaPrincipal = new Principal(cliente, indiceCuenta, db);

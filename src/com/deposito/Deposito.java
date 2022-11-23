@@ -311,6 +311,9 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
                 db.actualizarCuenta(cliente.getCuentas().get(indice));
                 
             } catch (Exception e) {
+                
+                JOptionPane.showMessageDialog(null,
+                    e.getMessage(), "Error de Deposito", JOptionPane.WARNING_MESSAGE);
             }
             
             

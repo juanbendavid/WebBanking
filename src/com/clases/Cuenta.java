@@ -15,6 +15,10 @@ public class Cuenta {
     private String idCuenta;
     private String pinCuenta;
 
+    public Cuenta() {
+    }
+
+    
     public Cuenta(String idCuenta) {
         this.idCuenta = idCuenta;
         this.movimientos = new ArrayList<>();
