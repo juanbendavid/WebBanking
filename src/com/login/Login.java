@@ -41,6 +41,8 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
+        cancelarBtn = new javax.swing.JButton();
         ingresarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,17 +120,55 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
         jPasswordField1.setBorder(null);
         txtclave.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 370, -1));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        cancelarBtn.setBackground(new java.awt.Color(255, 255, 255));
+        cancelarBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        cancelarBtn.setForeground(new java.awt.Color(0, 102, 102));
+        cancelarBtn.setText("Salir");
+        cancelarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarBtnMouseClicked(evt);
+            }
+        });
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
+
         ingresarBtn.setBackground(new java.awt.Color(0, 102, 102));
         ingresarBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         ingresarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        ingresarBtn.setText("Ingresar");
+        ingresarBtn.setText("Iniciar");
         ingresarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ingresarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ingresarBtnMouseClicked(evt);
             }
         });
-        txtclave.add(ingresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 150, 40));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(cancelarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ingresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ingresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        txtclave.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 370, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,6 +229,16 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
 
     }//GEN-LAST:event_ingresarBtnMouseClicked
 
+    private void cancelarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtnMouseClicked
+        // TODO add your handling code here:
+        
+        this.dispose();
+    }//GEN-LAST:event_cancelarBtnMouseClicked
+
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,12 +276,14 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelarBtn;
     private javax.swing.JButton ingresarBtn;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator separador;
     private javax.swing.JSeparator separador1;

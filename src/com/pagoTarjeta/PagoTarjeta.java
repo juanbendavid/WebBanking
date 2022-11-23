@@ -52,12 +52,14 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         txtmonto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
-        pagarTarjetaBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         txtdeuda = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        pagarTarjetaBtn = new javax.swing.JButton();
+        cancelarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -121,23 +123,6 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         txtclave.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 250, 20));
         txtclave.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 370, 20));
 
-        pagarTarjetaBtn.setBackground(new java.awt.Color(0, 102, 102));
-        pagarTarjetaBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        pagarTarjetaBtn.setForeground(new java.awt.Color(255, 255, 255));
-        pagarTarjetaBtn.setText("Pagar");
-        pagarTarjetaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pagarTarjetaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pagarTarjetaBtnMouseClicked(evt);
-            }
-        });
-        pagarTarjetaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pagarTarjetaBtnActionPerformed(evt);
-            }
-        });
-        txtclave.add(pagarTarjetaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 150, 40));
-
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -176,6 +161,61 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
             }
         });
         txtclave.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 370, 30));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        pagarTarjetaBtn.setBackground(new java.awt.Color(0, 102, 102));
+        pagarTarjetaBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        pagarTarjetaBtn.setForeground(new java.awt.Color(255, 255, 255));
+        pagarTarjetaBtn.setText("Pagar");
+        pagarTarjetaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pagarTarjetaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pagarTarjetaBtnMouseClicked(evt);
+            }
+        });
+        pagarTarjetaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagarTarjetaBtnActionPerformed(evt);
+            }
+        });
+
+        cancelarBtn.setBackground(new java.awt.Color(255, 255, 255));
+        cancelarBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        cancelarBtn.setForeground(new java.awt.Color(0, 102, 102));
+        cancelarBtn.setText("Cancelar");
+        cancelarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarBtnMouseClicked(evt);
+            }
+        });
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(cancelarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pagarTarjetaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pagarTarjetaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        txtclave.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 370, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,6 +301,17 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    private void cancelarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtnMouseClicked
+        // TODO add your handling code here:
+        Principal ventanaPrincipal = new Principal(cliente, 0);
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelarBtnMouseClicked
+
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,6 +355,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelarBtn;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel3;
@@ -312,6 +364,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton pagarTarjetaBtn;
     private javax.swing.JSeparator separador1;
     private javax.swing.JPanel txtclave;

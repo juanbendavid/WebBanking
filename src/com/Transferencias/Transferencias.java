@@ -51,7 +51,6 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         txtCuenta = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
-        transferirBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         separador3 = new javax.swing.JSeparator();
@@ -60,6 +59,9 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         jLabel8 = new javax.swing.JLabel();
         txtDescr = new javax.swing.JTextField();
         separador2 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        cancelarBtn1 = new javax.swing.JButton();
+        transferirBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -123,23 +125,6 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         txtpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 20));
         txtpanel.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 370, 20));
 
-        transferirBtn.setBackground(new java.awt.Color(0, 102, 102));
-        transferirBtn.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        transferirBtn.setForeground(new java.awt.Color(255, 255, 255));
-        transferirBtn.setText("Transferir");
-        transferirBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        transferirBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                transferirBtnMouseClicked(evt);
-            }
-        });
-        transferirBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transferirBtnActionPerformed(evt);
-            }
-        });
-        txtpanel.add(transferirBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 150, 40));
-
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +176,63 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         txtpanel.add(txtDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 380, 20));
         txtpanel.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 370, 20));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        cancelarBtn1.setBackground(new java.awt.Color(255, 255, 255));
+        cancelarBtn1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        cancelarBtn1.setForeground(new java.awt.Color(0, 102, 102));
+        cancelarBtn1.setText("Cancelar");
+        cancelarBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarBtn1MouseClicked(evt);
+            }
+        });
+        cancelarBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtn1ActionPerformed(evt);
+            }
+        });
+
+        transferirBtn1.setBackground(new java.awt.Color(0, 102, 102));
+        transferirBtn1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        transferirBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        transferirBtn1.setText("Transferir");
+        transferirBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        transferirBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transferirBtn1MouseClicked(evt);
+            }
+        });
+        transferirBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferirBtn1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cancelarBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transferirBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelarBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transferirBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        txtpanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 370, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,65 +255,6 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void transferirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferirBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transferirBtnActionPerformed
-
-    private void transferirBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferirBtnMouseClicked
-        // TODO add your handling code here:
-
-        JOptionPane ventanaPin = new JOptionPane();
-        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
-        int indice = jComboBox1.getSelectedIndex();
-        Cuenta cuentaCliente = cliente.getCuentas().get(indice);
-        // validacion de pin
-
-        try {
-            if (!validación(inPin, cuentaCliente.getPinCuenta())) {
-                JOptionPane.showMessageDialog(null,
-                        "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-        } catch (Exception e) {
-            return;
-        }
-
-        String iDcuenta = txtCuenta.getText();
-        int monto = Integer.parseInt(txtmonto.getText());
-        String descripcion = txtDescr.getText();
-        // obtener hora
-        LocalDate fecha = LocalDate.now();
-        LocalTime hora = LocalTime.now();
-
-        // crea el movimiento realizado
-        Movimiento movimiento = new Movimiento("Transferencia entre Cuentas", monto, iDcuenta,
-                cliente.getCuentas().get(indice).getIdCuenta(),
-                cuentaCliente.getIdCuenta(),
-                hora.toString(), fecha.toString(), descripcion);
-
-        // validar operacion
-        if (cuentaCliente.getSaldo() - monto >= 0 && monto>0) {
-            try {
-                FuncionesExtras.Distinto(iDcuenta, cuentaCliente.getIdCuenta());
-                cuentaCliente.setSaldo(cuentaCliente.getSaldo() - monto); // se actualiza el saldo
-                // se agrega el movimiento a la cuenta destino y a la cuenta origen
-                cuentaCliente.addMovimiento(movimiento);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null,
-                        e.getCause(), "Error de Transacción", JOptionPane.WARNING_MESSAGE);
-            }
-            Principal ventanaPrincipal = new Principal(cliente, indice);
-            ventanaPrincipal.setVisible(true);
-            this.dispose();
-
-        } else {
-            JOptionPane.showMessageDialog(null,
-                    "Monto inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
-        }
-
-
-    }//GEN-LAST:event_transferirBtnMouseClicked
-
     private void txtmontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtmontoActionPerformed
@@ -279,6 +262,25 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
     private void txtDescrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescrActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescrActionPerformed
+
+    private void transferirBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferirBtn1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferirBtn1MouseClicked
+
+    private void transferirBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferirBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferirBtn1ActionPerformed
+
+    private void cancelarBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtn1MouseClicked
+        // TODO add your handling code here:
+        Principal ventanaPrincipal = new Principal(cliente, 0);
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelarBtn1MouseClicked
+
+    private void cancelarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,6 +325,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelarBtn1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -331,10 +334,11 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator separador1;
     private javax.swing.JSeparator separador2;
     private javax.swing.JSeparator separador3;
-    private javax.swing.JButton transferirBtn;
+    private javax.swing.JButton transferirBtn1;
     private javax.swing.JTextField txtCuenta;
     private javax.swing.JTextField txtDescr;
     private javax.swing.JTextField txtmonto;
