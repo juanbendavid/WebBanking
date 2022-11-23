@@ -7,8 +7,12 @@ import com.login.*;
 import com.principal.Principal;
 import com.clases.*;
 import com.clases.Movimiento;
+import java.awt.Image;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +33,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
     public PagoServicios(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
+        cambiarImagen(imageLogo, "bancoG.png");
         this.cliente = cliente;
         FuncionesExtras.cargarCuentas(cliente, jComboBox2);
         FuncionesExtras.cargarServicios(cliente, jComboBox1);
@@ -46,7 +51,9 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
         txtclave = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        imageLogo = new javax.swing.JLabel();
         txtmonto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
@@ -74,30 +81,54 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 48)); // NOI18N
+        jLabel8.setForeground(java.awt.SystemColor.control);
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Viruróga");
+
+        jLabel3.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
         jLabel3.setForeground(java.awt.SystemColor.control);
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Web Banking");
+        jLabel3.setText("Tu dinero importa");
+
+        imageLogo.setText("imageDeposito");
+        imageLogo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                imageLogoMouseMoved(evt);
+            }
+        });
+        imageLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageLogoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(imageLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(313, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(268, 268, 268)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(105, Short.MAX_VALUE)
+                .addComponent(imageLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(206, 206, 206))
         );
 
         txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 350, 610));
@@ -308,6 +339,25 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
+    private void imageLogoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLogoMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imageLogoMouseMoved
+
+    private void imageLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLogoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imageLogoMouseClicked
+    
+     private void cambiarImagen(JLabel label, String cadena) {
+        setImageLabel(label, "src/com/images/" + cadena);
+    }
+
+    public void setImageLabel(JLabel labelname, String root) {
+        ImageIcon image = new ImageIcon(root);
+        Icon icon = new ImageIcon(
+                image.getImage().getScaledInstance(labelname.getWidth(), labelname.getHeight(), Image.SCALE_DEFAULT));
+        labelname.setIcon(icon);
+        this.repaint();
+    }
     /**
      * @param args the command line arguments
      */
@@ -348,12 +398,14 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarBtn;
+    private javax.swing.JLabel imageLogo;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

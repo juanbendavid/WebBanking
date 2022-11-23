@@ -7,9 +7,13 @@ import com.clases.Movimiento;
 import com.login.*;
 import com.clases.*;
 import com.principal.Principal;
+import java.awt.Image;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,6 +34,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
     public Deposito(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
+        cambiarImagen(imageLogo, "bancoG.png");
         this.cliente = cliente;
         FuncionesExtras.cargarCuentas(cliente, jComboBox1);
 
@@ -46,8 +51,6 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
         txtclave = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         txtmonto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         separador1 = new javax.swing.JSeparator();
@@ -59,6 +62,10 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
         jPanel2 = new javax.swing.JPanel();
         depositarBtn = new javax.swing.JButton();
         cancelarBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        imageLogo = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -72,36 +79,6 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Depósito");
         txtclave.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 500, -1));
-
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-
-        jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
-        jLabel3.setForeground(java.awt.SystemColor.control);
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Web Banking");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(313, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(268, 268, 268)))
-        );
-
-        txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 610));
 
         txtmonto.setBackground(new java.awt.Color(255, 255, 255));
         txtmonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -210,6 +187,65 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
         txtclave.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 370, 50));
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+
+        jLabel3.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
+        jLabel3.setForeground(java.awt.SystemColor.control);
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Tu dinero importa");
+
+        imageLogo.setText("imageDeposito");
+        imageLogo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                imageLogoMouseMoved(evt);
+            }
+        });
+        imageLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageLogoMouseClicked(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Roboto Medium", 0, 48)); // NOI18N
+        jLabel10.setForeground(java.awt.SystemColor.control);
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Viruróga");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(imageLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(imageLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87)
+                .addComponent(jLabel3)
+                .addContainerGap(222, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(300, Short.MAX_VALUE)
+                    .addComponent(jLabel10)
+                    .addGap(253, 253, 253)))
+        );
+
+        txtclave.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, 610));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -272,8 +308,8 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
             Principal ventanaPrincipal = new Principal(cliente, indice);
             ventanaPrincipal.setVisible(true);
             this.dispose();
-        }else{
-             JOptionPane.showMessageDialog(null,
+        } else {
+            JOptionPane.showMessageDialog(null,
                     "Monto inválido", "Error de Deposito", JOptionPane.WARNING_MESSAGE);
         }
 
@@ -293,6 +329,26 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelarBtnActionPerformed
+
+    private void imageLogoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLogoMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imageLogoMouseMoved
+
+    private void imageLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLogoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imageLogoMouseClicked
+
+    private void cambiarImagen(JLabel label, String cadena) {
+        setImageLabel(label, "src/com/images/" + cadena);
+    }
+
+    public void setImageLabel(JLabel labelname, String root) {
+        ImageIcon image = new ImageIcon(root);
+        Icon icon = new ImageIcon(
+                image.getImage().getScaledInstance(labelname.getWidth(), labelname.getHeight(), Image.SCALE_DEFAULT));
+        labelname.setIcon(icon);
+        this.repaint();
+    }
 
     /**
      * @param args the command line arguments
@@ -333,7 +389,9 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JButton depositarBtn;
+    private javax.swing.JLabel imageLogo;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
