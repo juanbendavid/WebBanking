@@ -235,11 +235,15 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
                     jComboBox1.getSelectedItem().toString());
 
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
+            Principal ventanaPrincipal = new Principal(cliente, indiceCuenta);
+            ventanaPrincipal.setVisible(true);
+            this.dispose();
+        } else {
+             JOptionPane.showMessageDialog(null,
+                    "Monto inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
         }
 
-        Principal ventanaPrincipal = new Principal(cliente, indiceCuenta);
-        ventanaPrincipal.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_pagarBtnMouseClicked
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed

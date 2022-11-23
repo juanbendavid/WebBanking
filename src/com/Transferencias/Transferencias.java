@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Juan David
  */
-public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTransacción{
+public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTransacción {
 
     /**
      * Creates new form login
@@ -227,17 +227,15 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         // validacion de pin
 
         try {
-            if(!validación(inPin, cuentaCliente.getPinCuenta())){
-            JOptionPane.showMessageDialog(null,
-                    "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+            if (!validación(inPin, cuentaCliente.getPinCuenta())) {
+                JOptionPane.showMessageDialog(null,
+                        "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
         } catch (Exception e) {
             return;
         }
-        
-        
-        
+
         String iDcuenta = txtCuenta.getText();
         int monto = Integer.parseInt(txtmonto.getText());
         String descripcion = txtDescr.getText();
@@ -250,18 +248,28 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 cliente.getCuentas().get(indice).getIdCuenta(),
                 cuentaCliente.getIdCuenta(),
                 hora.toString(), fecha.toString(), descripcion);
-        
+
         // validar operacion
-        if (cuentaCliente.getSaldo() - monto >= 0) {
-            cuentaCliente.setSaldo(cuentaCliente.getSaldo() - monto); // se actualiza el saldo
-            // se agrega el movimiento a la cuenta destino y a la cuenta origen
-            cuentaCliente.addMovimiento(movimiento);
+        if (cuentaCliente.getSaldo() - monto >= 0 && monto>0) {
+            try {
+                FuncionesExtras.Distinto(iDcuenta, cuentaCliente.getIdCuenta());
+                cuentaCliente.setSaldo(cuentaCliente.getSaldo() - monto); // se actualiza el saldo
+                // se agrega el movimiento a la cuenta destino y a la cuenta origen
+                cuentaCliente.addMovimiento(movimiento);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        e.getCause(), "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+            }
+            Principal ventanaPrincipal = new Principal(cliente, indice);
+            ventanaPrincipal.setVisible(true);
+            this.dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Monto inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
         }
 
-        
-        Principal ventanaPrincipal = new Principal(cliente,indice);
-        ventanaPrincipal.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_transferirBtnMouseClicked
 
     private void txtmontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoActionPerformed

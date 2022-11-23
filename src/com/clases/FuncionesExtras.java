@@ -39,4 +39,9 @@ public class FuncionesExtras {
         }
     }
     
+    public static void Distinto(String cuenta1, String cuenta2) throws Exception{
+        if (cuenta1.equals(cuenta2)){
+            throw new Exception("Cuenta remitente y origen iguales");
+        }
+    }
 }

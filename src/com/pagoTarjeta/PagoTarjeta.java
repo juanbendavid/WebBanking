@@ -1,4 +1,3 @@
-
 package com.pagoTarjeta;
 
 import com.clases.Cliente;
@@ -23,11 +22,12 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
     /**
      * Creates new form login
      */
-     private Cliente cliente;
+    private Cliente cliente;
 
     public PagoTarjeta() {
-        
+
     }
+
     public PagoTarjeta(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -193,53 +193,53 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    
-    
-    
-    
+
     private void pagarTarjetaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarTarjetaBtnActionPerformed
         // TODO add your handling code here:
-        
+
         JOptionPane ventanaPin = new JOptionPane();
         int indiceTarjeta = jComboBox1.getSelectedIndex();
         int indiceCuenta = jComboBox2.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
         String inPin = ventanaPin.showInputDialog("Ingrese su pin");
-       
+
         try {
-            if(!validación(inPin, cuentaCliente.getPinCuenta())){
-            JOptionPane.showMessageDialog(null,
-                    "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+            if (!validación(inPin, cuentaCliente.getPinCuenta())) {
+                JOptionPane.showMessageDialog(null,
+                        "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
         } catch (Exception e) {
             return;
         }
-        
+
         int deuda = cliente.getTarjetas().get(indiceTarjeta).getDeuda();
         int monto = Integer.parseInt(txtmonto.getText());
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
-        
-        
-        if(monto>0 & cuentaCliente.getSaldo()-monto>=0 & deuda-monto>=0){
+
+        if (monto > 0 & cuentaCliente.getSaldo() - monto >= 0 & deuda - monto >= 0) {
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getTarjetas().get(indiceTarjeta).reducirDeuda(monto);   // se reduce la deuda de la tarjeta
             // creacion de movimiento realizado
             Movimiento movimiento = new Movimiento("Pago de Tarjeta de Crédito", monto,
                     cliente.getTarjetas().get(indiceTarjeta).getIdTarjeta(),
                     cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString());
-            
+
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
+            Principal ventanaPrincipal = new Principal(cliente, indiceCuenta);
+            ventanaPrincipal.setVisible(true);
+            this.dispose();
+        }else{
+             JOptionPane.showMessageDialog(null,
+                    "Monto inválido", "Error de Pago de Tarjeta", JOptionPane.WARNING_MESSAGE);
         }
-        
-        Principal ventanaPrincipal = new Principal(cliente, indiceCuenta);
-        ventanaPrincipal.setVisible(true);
-        this.dispose();
+
+
     }//GEN-LAST:event_pagarTarjetaBtnActionPerformed
 
     private void txtmontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoActionPerformed
@@ -248,7 +248,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
     private void pagarTarjetaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pagarTarjetaBtnMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_pagarTarjetaBtnMouseClicked
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged

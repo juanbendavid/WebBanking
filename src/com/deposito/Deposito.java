@@ -1,5 +1,5 @@
-
 package com.deposito;
+
 import com.clases.FuncionesExtras;
 import com.clases.Cliente;
 import com.clases.Cuenta;
@@ -24,7 +24,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
     private Cliente cliente;
 
     public Deposito() {
-        
+
     }
 
     public Deposito(Cliente cliente) {
@@ -32,7 +32,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
         FuncionesExtras.cargarCuentas(cliente, jComboBox1);
-        
+
     }
 
     /**
@@ -202,49 +202,50 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuenta = cliente.getCuentas().get(indice); // cuenta selececionada
         Integer monto = Integer.parseInt(txtmonto.getText()); // monto indicado
-       
+
         JOptionPane ventanaPin = new JOptionPane();
         String inPin = ventanaPin.showInputDialog("Ingrese su pin");
         // validacion de pin
 
         try {
-            if(!validación(inPin, cuenta.getPinCuenta())){
-            JOptionPane.showMessageDialog(null,
-                    "Pin inválido", "Error de Deposito", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+            if (!validación(inPin, cuenta.getPinCuenta())) {
+                JOptionPane.showMessageDialog(null,
+                        "Pin inválido", "Error de Deposito", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
         } catch (Exception e) {
             return;
         }
-        
-        cliente.getCuentas().get(indice).aumentarSaldo(monto);        //aumenta saldo en el objeto instanciado
-        // obtener hora
-        LocalDate fecha = LocalDate.now();
-        LocalTime hora = LocalTime.now();
-        
-        // crea un nuevo movimiento
-        
-        Movimiento movimiento = new Movimiento("Deposito", monto, cuenta.getIdCuenta(),
-                 hora.toString(), fecha.toString(), txtDescr.getText());
-        
-        cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
-        
-        //pasar cliente modificado a funcion para commit en BD
-        
-        Principal ventanaPrincipal = new Principal(cliente, indice);
-        ventanaPrincipal.setVisible(true);
-        this.dispose();
+        if (monto > 0) {
+            cliente.getCuentas().get(indice).aumentarSaldo(monto);        //aumenta saldo en el objeto instanciado
+            // obtener hora
+            LocalDate fecha = LocalDate.now();
+            LocalTime hora = LocalTime.now();
+
+            // crea un nuevo movimiento
+            Movimiento movimiento = new Movimiento("Deposito", monto, cuenta.getIdCuenta(),
+                    hora.toString(), fecha.toString(), txtDescr.getText());
+
+            cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
+
+            //pasar cliente modificado a funcion para commit en BD
+            Principal ventanaPrincipal = new Principal(cliente, indice);
+            ventanaPrincipal.setVisible(true);
+            this.dispose();
+        }else{
+             JOptionPane.showMessageDialog(null,
+                    "Monto inválido", "Error de Deposito", JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_depositarBtnMouseClicked
 
     private void txtDescrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescrActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescrActionPerformed
 
-    
-    
-        /**
-         * @param args the command line arguments
-         */
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
