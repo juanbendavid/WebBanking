@@ -32,12 +32,12 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
     }
 
-    public Deposito(Cliente cliente, BaseDeDatos db) {
+    public Deposito(Cliente cliente,  BaseDeDatos db) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.db = db;
         cambiarImagen(imageLogo, "bancoG.png");
         this.cliente = cliente;
-        this.db = db;
         FuncionesExtras.cargarCuentas(cliente, jComboBox1);
 
     }
@@ -307,13 +307,15 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
             cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
             
             try {
-                db.actualizarCuenta(cliente.getCuentas().get(indice));
                 db.agregarMovimiento(movimiento);
+                db.actualizarCuenta(cliente.getCuentas().get(indice));
+                
             } catch (Exception e) {
             }
             
+            
             //pasar cliente modificado a funcion para commit en BD
-            Principal ventanaPrincipal = new Principal(cliente, indice, db);
+            Principal ventanaPrincipal = new Principal(cliente, indice,db);
             ventanaPrincipal.setVisible(true);
             this.dispose();
         } else {
@@ -329,7 +331,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
     private void cancelarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal(cliente, 0, db);
+        Principal ventanaPrincipal = new Principal(cliente, 0,db);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarBtnMouseClicked

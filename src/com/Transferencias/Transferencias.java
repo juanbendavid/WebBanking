@@ -16,6 +16,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import com.DB.BaseDeDatos;
 
 /**
  *
@@ -27,14 +28,15 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
      * Creates new form login
      */
     private Cliente cliente;
-
+    private BaseDeDatos db;
     public Transferencias() {
 
     }
 
-    public Transferencias(Cliente cliente) {
+    public Transferencias(Cliente cliente,  BaseDeDatos db) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.db = db;
         cambiarImagen(imageLogo, "bancoG.png");
         this.cliente = cliente;
         FuncionesExtras.cargarCuentas(cliente, jComboBox1);
@@ -341,7 +343,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 JOptionPane.showMessageDialog(null,
                         e.getCause(), "Error de Transacción", JOptionPane.WARNING_MESSAGE);
             }
-            Principal ventanaPrincipal = new Principal(cliente, indice);
+            Principal ventanaPrincipal = new Principal(cliente, indice, db);
             ventanaPrincipal.setVisible(true);
             this.dispose();
 
@@ -357,7 +359,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
 
     private void cancelarBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtn1MouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal(cliente, 0);
+        Principal ventanaPrincipal = new Principal(cliente, 0, db);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarBtn1MouseClicked

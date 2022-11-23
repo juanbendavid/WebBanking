@@ -33,12 +33,11 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
     }
 
-    public PagoTarjeta(Cliente cliente, BaseDeDatos db) {
+    public PagoTarjeta(Cliente cliente,  BaseDeDatos db) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
         this.db = db;
-        cambiarImagen(imageLogo, "bancoG.png");
         FuncionesExtras.cargarTarjetas(cliente, jComboBox1);
         FuncionesExtras.cargarCuentas(cliente, jComboBox2);
     }

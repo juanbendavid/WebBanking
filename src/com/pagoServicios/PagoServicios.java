@@ -31,11 +31,11 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
     }
 
-    public PagoServicios(Cliente cliente, BaseDeDatos db ) {
+    public PagoServicios(Cliente cliente,  BaseDeDatos db) {
         initComponents();
         this.setLocationRelativeTo(null);
-        cambiarImagen(imageLogo, "bancoG.png");
         this.db = db;
+        cambiarImagen(imageLogo, "bancoG.png");
         this.cliente = cliente;
         FuncionesExtras.cargarCuentas(cliente, jComboBox2);
         FuncionesExtras.cargarServicios(cliente, jComboBox1);
@@ -309,7 +309,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
                     jComboBox1.getSelectedItem().toString());
 
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
-            Principal ventanaPrincipal = new Principal(cliente, indiceCuenta, db);
+            Principal ventanaPrincipal = new Principal(cliente, indiceCuenta,db);
             ventanaPrincipal.setVisible(true);
             this.dispose();
         } else {
@@ -332,7 +332,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
     private void cancelarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal(cliente, 0, db);
+        Principal ventanaPrincipal = new Principal(cliente, 0,db);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarBtnMouseClicked

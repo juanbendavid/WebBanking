@@ -20,7 +20,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
      * Creates new form login
      */
     private Cliente cliente;
-    private BaseDeDatos db;
+    public static BaseDeDatos db;
 
     public Login() {
         initComponents();

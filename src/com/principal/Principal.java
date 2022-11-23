@@ -32,10 +32,10 @@ public class Principal extends javax.swing.JFrame {
         
     }
     
-    public Principal(Cliente cliente, int indice, BaseDeDatos db) {
+    public Principal(Cliente cliente, int indice,  BaseDeDatos db) {
         initComponents();
-        this.db = db;
         this.cliente= cargarClienteBD(cliente);
+        this.db = db;
         cambiarImagen(imageLogo, "bancoG.png");
         FuncionesExtras.cargarCuentasPrincipal(cliente, jComboBox1);
         mostrarDatos(indice);
@@ -388,7 +388,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageTransaccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageTransaccionMouseClicked
         // TODO add your handling code here:
-        Transferencias  transferencia = new Transferencias(cliente);
+        Transferencias  transferencia = new Transferencias(cliente, db);
         transferencia.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageTransaccionMouseClicked
@@ -405,7 +405,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageTarjetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageTarjetaMouseClicked
         // TODO add your handling code here:
-        PagoTarjeta  pagoTarjeta = new PagoTarjeta(cliente,db);
+        PagoTarjeta  pagoTarjeta = new PagoTarjeta(cliente, db);
         pagoTarjeta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageTarjetaMouseClicked
@@ -421,7 +421,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageServiciosMouseClicked
         // TODO add your handling code here:
-        PagoServicios  pagoServicios = new PagoServicios(cliente,db);
+        PagoServicios  pagoServicios = new PagoServicios(cliente, db);
         pagoServicios.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageServiciosMouseClicked
