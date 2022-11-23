@@ -22,11 +22,10 @@ public class Cliente {
         this.tarjetas = new ArrayList<>();
         this.servicios = new ArrayList<>();
     }
-    public Cliente(String nombre, String idCliente, String pinCuenta, String pinTransferencia, ArrayList<Cuenta> cuentas, ArrayList<Tarjeta> tarjetas) {
+    public Cliente(String nombre, String idCliente, String pinCuenta, ArrayList<Cuenta> cuentas, ArrayList<Tarjeta> tarjetas) {
         this.nombre = nombre;
         this.idCliente = idCliente;
         this.pinCuenta = pinCuenta;
-        this.pinTransferencia = pinTransferencia;
         this.cuentas = cuentas;
         this.tarjetas = tarjetas;
     }
