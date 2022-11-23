@@ -5,16 +5,18 @@ import com.clases.Cliente;
 import com.clases.Cuenta;
 import com.clases.Movimiento;
 import com.login.*;
+import com.clases.*;
 import com.principal.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Juan David
  */
-public class Deposito extends javax.swing.JFrame {
+public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacción {
 
     /**
      * Creates new form login
@@ -52,6 +54,9 @@ public class Deposito extends javax.swing.JFrame {
         depositarBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        separador2 = new javax.swing.JSeparator();
+        txtDescr = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -145,6 +150,25 @@ public class Deposito extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Monto a Depositar");
         txtclave.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 250, 20));
+        txtclave.add(separador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 370, 20));
+
+        txtDescr.setBackground(new java.awt.Color(255, 255, 255));
+        txtDescr.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtDescr.setText("ahorro");
+        txtDescr.setToolTipText("asdasd");
+        txtDescr.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtDescr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescrActionPerformed(evt);
+            }
+        });
+        txtclave.add(txtDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 380, 20));
+
+        jLabel8.setFont(new java.awt.Font("Roboto Light", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("Descripción");
+        txtclave.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 290, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,15 +202,30 @@ public class Deposito extends javax.swing.JFrame {
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuenta = cliente.getCuentas().get(indice); // cuenta selececionada
         Integer monto = Integer.parseInt(txtmonto.getText()); // monto indicado
-        Integer actual = cliente.getCuentas().get(indice).getSaldo();   // obtiene saldo actual
-        cliente.getCuentas().get(indice).setSaldo(actual+monto);        //aumenta saldo en el objeto instanciado
+       
+        JOptionPane ventanaPin = new JOptionPane();
+        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
+        // validacion de pin
+
+        try {
+            if(!validación(inPin, cuenta.getPinCuenta())){
+            JOptionPane.showMessageDialog(null,
+                    "Pin inválido", "Error de Deposito", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        } catch (Exception e) {
+            return;
+        }
+        
+        cliente.getCuentas().get(indice).aumentarSaldo(monto);        //aumenta saldo en el objeto instanciado
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
+        
         // crea un nuevo movimiento
         
         Movimiento movimiento = new Movimiento("Deposito", monto, cuenta.getIdCuenta(),
-                 hora.toString(), fecha.toString(), "");
+                 hora.toString(), fecha.toString(), txtDescr.getText());
         
         cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
         
@@ -196,6 +235,10 @@ public class Deposito extends javax.swing.JFrame {
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_depositarBtnMouseClicked
+
+    private void txtDescrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescrActionPerformed
 
     
     
@@ -242,9 +285,17 @@ public class Deposito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separador1;
+    private javax.swing.JSeparator separador2;
+    private javax.swing.JTextField txtDescr;
     private javax.swing.JPanel txtclave;
     private javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public boolean validación(String pin1, String pin2) {
+        return pin1.equals(pin2);
+    }
 }

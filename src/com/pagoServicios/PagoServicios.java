@@ -1,4 +1,3 @@
-
 package com.pagoServicios;
 
 import com.clases.Cliente;
@@ -11,6 +10,7 @@ import com.clases.Movimiento;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan David
@@ -20,11 +20,12 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
     /**
      * Creates new form login
      */
-     private Cliente cliente;
+    private Cliente cliente;
 
     public PagoServicios() {
-        
+
     }
+
     public PagoServicios(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -207,33 +208,36 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
         int indiceCuenta = jComboBox2.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
         JOptionPane ventanaPin = new JOptionPane();
-        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
-       
-        if(!validación(inPin, cuentaCliente.getPinCuenta())){
-            JOptionPane.showMessageDialog(null,
-                    "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+
+        try {
+            String inPin = ventanaPin.showInputDialog("Ingrese su pin");
+            if (!validación(inPin, cuentaCliente.getPinCuenta())) {
+                JOptionPane.showMessageDialog(null,
+                        "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (Exception e) {
             return;
         }
-        
+
         int deuda = cliente.getServicios().get(indiceServicio).getSaldo();
         int monto = Integer.parseInt(txtmonto.getText());
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
-       
 
-        if(monto>0 & cuentaCliente.getSaldo()-monto>=0 & deuda-monto>=0){
+        if (monto > 0 & cuentaCliente.getSaldo() - monto >= 0 & deuda - monto >= 0) {
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getServicios().get(indiceServicio).reducirSaldo(monto);   // se reduce la deuda del Servicio
             // creacion de movimiento realizado
             Movimiento movimiento = new Movimiento("Pago de Servicio", monto,
                     cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString(),
                     jComboBox1.getSelectedItem().toString());
-            
+
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
         }
-        
-        Principal ventanaPrincipal = new Principal(cliente,indiceCuenta);
+
+        Principal ventanaPrincipal = new Principal(cliente, indiceCuenta);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_pagarBtnMouseClicked

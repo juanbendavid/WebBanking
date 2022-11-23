@@ -226,11 +226,17 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         Cuenta cuentaCliente = cliente.getCuentas().get(indice);
         // validacion de pin
 
-        if(!validación(inPin, cuentaCliente.getPinCuenta())){
+        try {
+            if(!validación(inPin, cuentaCliente.getPinCuenta())){
             JOptionPane.showMessageDialog(null,
                     "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        } catch (Exception e) {
+            return;
+        }
+        
+        
         
         String iDcuenta = txtCuenta.getText();
         int monto = Integer.parseInt(txtmonto.getText());

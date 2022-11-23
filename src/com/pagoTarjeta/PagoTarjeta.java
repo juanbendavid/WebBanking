@@ -209,9 +209,13 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
         String inPin = ventanaPin.showInputDialog("Ingrese su pin");
        
-        if(!validación(inPin, cuentaCliente.getPinCuenta())){
+        try {
+            if(!validación(inPin, cuentaCliente.getPinCuenta())){
             JOptionPane.showMessageDialog(null,
                     "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        } catch (Exception e) {
             return;
         }
         
