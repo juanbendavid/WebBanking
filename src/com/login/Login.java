@@ -1,4 +1,3 @@
-
 package com.login;
 
 import com.principal.Principal;
@@ -6,18 +5,18 @@ import com.principal.Principal;
 import com.clases.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan David
  */
-public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
+public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
 
     /**
      * Creates new form login
      */
-    
     private Cliente cliente;
-    
+
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -145,13 +144,13 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean authUser(){
+    private boolean authUser() {
         String idCliente = txtCedula.getText();
         String password = jPasswordField1.toString();
-        
+
         System.out.println("verificando...");
-        
-        if (validación(idCliente, password)){
+
+        if (validación(idCliente, password)) {
             // datos de prueba
             cliente = new Cliente();
             cliente.setNombre("Juan David");
@@ -160,8 +159,8 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
             cliente.getCuentas().add(new Cuenta(500000, "14-15451", "12345"));
             cliente.getCuentas().add(new Cuenta(10000, "15-45187", "54321"));
             cliente.getCuentas().add(new Cuenta(705000, "18-451547", "11111"));
-            cliente.getTarjetas().add(new Tarjeta("3154512", 0,2000000 ));
-            cliente.getTarjetas().add(new Tarjeta("124451", 500000,4000000 ));
+            cliente.getTarjetas().add(new Tarjeta("3154512", 0, 2000000));
+            cliente.getTarjetas().add(new Tarjeta("124451", 500000, 4000000));
             cliente.getServicios().add(new Servicio(0, "Tigo", 200000));
             cliente.getServicios().add(new Servicio(1, "Ande", 650000));
             cliente.getServicios().add(new Servicio(2, "Essap", 300000));
@@ -170,23 +169,24 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna{
         }
         return false;
     }
-    
+
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void ingresarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarBtnMouseClicked
         // TODO add your handling code here:
-        
-        if (authUser()){
-            Principal ventanaPrincipal = new Principal(cliente,0);
+        try {
+            authUser();
+            Principal ventanaPrincipal = new Principal(cliente, 0);
             ventanaPrincipal.setVisible(true);
             this.dispose();
-        }else{
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Error", "Error de Login", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_ingresarBtnMouseClicked
 
     /**
