@@ -16,6 +16,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -28,11 +29,12 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
      */
     private Cliente cliente;
     private BaseDeDatos db;
+
     public PagoServicios() {
 
     }
 
-    public PagoServicios(Cliente cliente,  BaseDeDatos db) {
+    public PagoServicios(Cliente cliente, BaseDeDatos db) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.db = db;
@@ -279,13 +281,20 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
     private void pagarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pagarBtnMouseClicked
         // TODO add your handling code here:
 
+        String inPin = null;
         int indiceServicio = jComboBox1.getSelectedIndex();
         int indiceCuenta = jComboBox2.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
         JOptionPane ventanaPin = new JOptionPane();
 
         try {
-            String inPin = ventanaPin.showInputDialog("Ingrese su pin");
+            JPasswordField pf = new JPasswordField();
+
+            int okCxl = JOptionPane.showConfirmDialog(null, pf, "Ingrese su pin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+            if (okCxl == JOptionPane.OK_OPTION) {
+                inPin = new String(pf.getPassword());
+            }
             if (!validación(inPin, cuentaCliente.getPinCuenta())) {
                 JOptionPane.showMessageDialog(null,
                         "Pin inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
@@ -294,28 +303,26 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
         } catch (Exception e) {
             return;
         }
-        
-        
-        
+
         int deuda = cliente.getServicios().get(indiceServicio).getSaldo();
-        int monto=0;
+        int monto = 0;
         try {
             monto = Integer.parseInt(txtmonto.getText());
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null,
-                        "Monto no válido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
-             return;
+            JOptionPane.showMessageDialog(null,
+                    "Monto no válido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
+            return;
         }
         // obtener hora
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
-        
+
         if (monto > 0 & cuentaCliente.getSaldo() - monto >= 0 & deuda - monto >= 0) {
             cliente.getCuentas().get(indiceCuenta).reducirSaldo(monto);     // se reduce el saldo de la cuenta 
             cliente.getServicios().get(indiceServicio).reducirSaldo(monto);   // se reduce la deuda del Servicio
             // creacion de movimiento realizado
             Movimiento movimiento = new Movimiento("Pago de Servicio", monto,
-                    cuentaCliente.getIdCuenta(), hora.toString(), fecha.toString(),
+                    cuentaCliente.getIdCuenta(), hora.toString().substring(0, 8), fecha.toString(),
                     jComboBox1.getSelectedItem().toString());
 
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
@@ -325,9 +332,9 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
             Comprobante comprobante = new Comprobante(movimiento);
             comprobante.setVisible(true);
-            
+
         } else {
-             JOptionPane.showMessageDialog(null,
+            JOptionPane.showMessageDialog(null,
                     "Monto inválido", "Error de Transacción", JOptionPane.WARNING_MESSAGE);
         }
 
@@ -346,7 +353,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
     private void cancelarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal(cliente, 0,db);
+        Principal ventanaPrincipal = new Principal(cliente, 0, db);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarBtnMouseClicked
@@ -362,8 +369,8 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
     private void imageLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLogoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_imageLogoMouseClicked
-    
-     private void cambiarImagen(JLabel label, String cadena) {
+
+    private void cambiarImagen(JLabel label, String cadena) {
         setImageLabel(label, "src/com/images/" + cadena);
     }
 
@@ -374,6 +381,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
         labelname.setIcon(icon);
         this.repaint();
     }
+
     /**
      * @param args the command line arguments
      */

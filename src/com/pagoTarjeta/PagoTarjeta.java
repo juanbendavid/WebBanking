@@ -18,6 +18,8 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -42,6 +44,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         this.db = db;
         FuncionesExtras.cargarTarjetas(cliente, jComboBox1);
         FuncionesExtras.cargarCuentas(cliente, jComboBox2);
+        cambiarImagen(imageLogo, "bancoG.png");
     }
 
     /**
@@ -277,13 +280,18 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
     private void pagarTarjetaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarTarjetaBtnActionPerformed
         // TODO add your handling code here:
-
-        JOptionPane ventanaPin = new JOptionPane();
+        String inPin =null;
         int indiceTarjeta = jComboBox1.getSelectedIndex();
         int indiceCuenta = jComboBox2.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
-        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
 
+        JPasswordField pf = new JPasswordField();
+        int okCxl = JOptionPane.showConfirmDialog(null, pf, "Ingrese su pin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (okCxl == JOptionPane.OK_OPTION) {
+            inPin = new String(pf.getPassword());
+        }
+        
         try {
             if (!validación(inPin, cuentaCliente.getPinCuenta())) {
                 JOptionPane.showMessageDialog(null,
@@ -315,7 +323,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
             Movimiento movimiento = new Movimiento("Pago de Tarjeta de Crédito", monto,
                     cliente.getTarjetas().get(indiceTarjeta).getIdTarjeta(),
                     cliente.getCuentas().get(indiceCuenta).getIdCuenta(),
-                    hora.toString(), fecha.toString(), "");
+                    hora.toString().substring(0, 8), fecha.toString(), "");
 
             try {
                 db.actualizarCuenta(cliente.getCuentas().get(indiceCuenta));

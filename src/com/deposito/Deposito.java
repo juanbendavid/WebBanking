@@ -17,6 +17,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -277,7 +278,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
     private void depositarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarBtnMouseClicked
         // TODO add your handling code here:
-
+        String inPin =null;
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuenta = cliente.getCuentas().get(indice); // cuenta selececionada
         int monto=0;
@@ -289,19 +290,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
              return;
         }
 
-        JOptionPane ventanaPin = new JOptionPane();
-        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
-        // validacion de pin
-
-        try {
-            if (!validación(inPin, cuenta.getPinCuenta())) {
-                JOptionPane.showMessageDialog(null,
-                        "Pin inválido", "Error de Deposito", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-        } catch (Exception e) {
-            return;
-        }
+        
         if (monto > 0) {
             cliente.getCuentas().get(indice).aumentarSaldo(monto);        //aumenta saldo en el objeto instanciado
             // obtener hora
@@ -310,7 +299,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
             // crea un nuevo movimiento
             Movimiento movimiento = new Movimiento("Deposito", monto,cliente.getCuentas().get(indice).getIdCuenta(), "",
-                    hora.toString(), fecha.toString(), txtDescr.getText());
+                    hora.toString().substring(0,8), fecha.toString(), txtDescr.getText());
 
             cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
             

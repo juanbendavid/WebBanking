@@ -18,6 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import com.DB.BaseDeDatos;
 import com.comprobante.Comprobante;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -307,7 +310,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         // TODO add your handling code here:
         
        
-        
+        String inPin = null;
         
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indice);
@@ -325,6 +328,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
         
+        
         try {
             FuncionesExtras.Distinto(iDcuenta, cuentaCliente.getIdCuenta());
 
@@ -335,8 +339,13 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
               return;
         }
         
-        JOptionPane ventanaPin = new JOptionPane();
-        String inPin = ventanaPin.showInputDialog("Ingrese su pin");
+        JPasswordField pf = new JPasswordField();
+        
+        int okCxl = JOptionPane.showConfirmDialog(null, pf, "Ingrese su pin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (okCxl == JOptionPane.OK_OPTION) {
+            inPin = new String(pf.getPassword());
+        }
 
         // validacion de pin
         try {
@@ -354,7 +363,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
         }
 
         Movimiento movimiento = new Movimiento("Transferencias entre cuentas",
-                monto, cuentaDestino.getIdCuenta(), cuentaCliente.getIdCuenta(), hora.toString(),
+                monto, cuentaDestino.getIdCuenta(), cuentaCliente.getIdCuenta(), hora.toString().substring(0,8),
                 fecha.toString(), txtDescr.getText());
         // crea el movimiento realizado
         // validar operacion

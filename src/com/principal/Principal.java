@@ -152,7 +152,7 @@ public class Principal extends javax.swing.JFrame {
                 jLabel5MouseMoved(evt);
             }
         });
-        panelPrincipal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 150, -1));
+        panelPrincipal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 150, -1));
 
         contenedor.setToolTipText("");
         contenedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -182,7 +182,7 @@ public class Principal extends javax.swing.JFrame {
                 imageDepositoMouseClicked(evt);
             }
         });
-        panelPrincipal.add(imageDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 70, 70));
+        panelPrincipal.add(imageDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 70, 70));
 
         txtSaldoActual.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         txtSaldoActual.setForeground(new java.awt.Color(0, 0, 0));
@@ -207,7 +207,7 @@ public class Principal extends javax.swing.JFrame {
                 imageTransaccionMouseClicked(evt);
             }
         });
-        panelPrincipal.add(imageTransaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 70, 70));
+        panelPrincipal.add(imageTransaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 70, 70));
 
         txtTransacciones.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         txtTransacciones.setForeground(new java.awt.Color(0, 0, 0));
@@ -232,7 +232,7 @@ public class Principal extends javax.swing.JFrame {
                 imageTarjetaMouseClicked(evt);
             }
         });
-        panelPrincipal.add(imageTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 70, 70));
+        panelPrincipal.add(imageTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 70, 70));
 
         txtTransacciones1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         txtTransacciones1.setForeground(new java.awt.Color(0, 0, 0));
@@ -244,7 +244,7 @@ public class Principal extends javax.swing.JFrame {
                 txtTransacciones1MouseMoved(evt);
             }
         });
-        panelPrincipal.add(txtTransacciones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 150, -1));
+        panelPrincipal.add(txtTransacciones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 150, -1));
 
         imageServicios.setText("imageDeposito");
         imageServicios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
