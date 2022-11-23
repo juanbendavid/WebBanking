@@ -484,7 +484,7 @@ public class Principal extends javax.swing.JFrame {
      private void mostrarDatos(int indice) {
         
         txtNroCuenta.setText("Cuenta N° " + cliente.getCuentas().get(indice).getIdCuenta());
-        txtSaldoActual.setText(cliente.getCuentas().get(0).getSaldo() +"");
+        txtSaldoActual.setText(cliente.getCuentas().get(indice).getSaldo() +"");
     }
     public void setImageLabel(JLabel labelname, String root){
         ImageIcon image = new ImageIcon(root);
