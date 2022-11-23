@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import com.DB.BaseDeDatos;
+import com.comprobante.Comprobante;
 
 /**
  *
@@ -365,12 +366,15 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
                 cliente.getCuentas().get(indice).addMovimiento(movimiento);
 
                 db.actualizarCuenta(cliente.getCuentas().get(indice));
-
                 db.agregarMovimiento(movimiento);
-
+                
                 Principal ventanaPrincipal = new Principal(cliente, indice, db);
                 ventanaPrincipal.setVisible(true);
                 this.dispose();
+                
+                Comprobante comprobante = new Comprobante(movimiento);
+                comprobante.setVisible(true);
+                //this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,
                         e.getMessage(), "Error de Transacción", JOptionPane.WARNING_MESSAGE);
