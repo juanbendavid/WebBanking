@@ -20,10 +20,12 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
      * Creates new form login
      */
     private Cliente cliente;
+    private BaseDeDatos db;
 
     public Login() {
         initComponents();
         cambiarImagen(imageLogo, "bancoG.png");
+        this.db = new BaseDeDatos("jdbc:sqlite:database.db", "database.db");
         this.setLocationRelativeTo(null);
     }
 
@@ -226,6 +228,18 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
 
         System.out.println("verificando...");
 
+        cliente = db.buscarClienteBD(idCliente, password);
+        System.out.println(cliente);
+
+        try {
+            cliente = db.buscarClienteBD(idCliente, password);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(), "Error de Deposito", JOptionPane.WARNING_MESSAGE);
+            return false;
+
+        }
+
         if (validación(idCliente, password)) {
             // datos de prueba
             cliente = new Cliente();
@@ -252,16 +266,23 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
 
     private void ingresarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarBtnMouseClicked
         // TODO add your handling code here:
+        String idCliente = txtCedula.getText();
+        String password = String.valueOf(jPasswordField1.getPassword());
+        
         try {
-            authUser();
-            Principal ventanaPrincipal = new Principal(cliente, 0);
-            ventanaPrincipal.setVisible(true);
-            this.dispose();
-
+            cliente = db.buscarClienteBD(idCliente, password);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
-                    "Error", "Error de Login", JOptionPane.WARNING_MESSAGE);
+                    e.getMessage(), "Error de Login", JOptionPane.WARNING_MESSAGE);
+            return;
+
         }
+        
+
+        Principal ventanaPrincipal = new Principal(cliente, 0, db);
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
+
 
     }//GEN-LAST:event_ingresarBtnMouseClicked
 
@@ -352,9 +373,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
     @Override
     public boolean validación(String pin1, String pin2) {
         // use database
-        
-        
-        
+
         return true;
     }
 }

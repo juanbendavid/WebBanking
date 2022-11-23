@@ -1,5 +1,6 @@
 package com.deposito;
 
+import com.DB.BaseDeDatos;
 import com.clases.FuncionesExtras;
 import com.clases.Cliente;
 import com.clases.Cuenta;
@@ -26,16 +27,17 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
      * Creates new form login
      */
     private Cliente cliente;
-
+    private BaseDeDatos db;
     public Deposito() {
 
     }
 
-    public Deposito(Cliente cliente) {
+    public Deposito(Cliente cliente, BaseDeDatos db) {
         initComponents();
         this.setLocationRelativeTo(null);
         cambiarImagen(imageLogo, "bancoG.png");
         this.cliente = cliente;
+        this.db = db;
         FuncionesExtras.cargarCuentas(cliente, jComboBox1);
 
     }
@@ -303,9 +305,15 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
                     hora.toString(), fecha.toString(), txtDescr.getText());
 
             cliente.getCuentas().get(indice).addMovimiento(movimiento);// añade el movimeinto a la cuenta del cliente
-
+            
+            try {
+                db.actualizarCuenta(cliente.getCuentas().get(indice));
+                db.agregarMovimiento(movimiento);
+            } catch (Exception e) {
+            }
+            
             //pasar cliente modificado a funcion para commit en BD
-            Principal ventanaPrincipal = new Principal(cliente, indice);
+            Principal ventanaPrincipal = new Principal(cliente, indice, db);
             ventanaPrincipal.setVisible(true);
             this.dispose();
         } else {
@@ -321,7 +329,7 @@ public class Deposito extends javax.swing.JFrame implements ValidarPinDeTransacc
 
     private void cancelarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal(cliente, 0);
+        Principal ventanaPrincipal = new Principal(cliente, 0, db);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarBtnMouseClicked

@@ -1,6 +1,7 @@
 
 package com.principal;
 
+import com.DB.BaseDeDatos;
 import com.Transferencias.Transferencias;
 import com.clases.Cliente;
 import com.clases.FuncionesExtras;
@@ -26,13 +27,14 @@ public class Principal extends javax.swing.JFrame {
      */
     
     private Cliente cliente;
-    
+    private BaseDeDatos db;
     public Principal(){
         
     }
     
-    public Principal(Cliente cliente, int indice) {
+    public Principal(Cliente cliente, int indice, BaseDeDatos db) {
         initComponents();
+        this.db = db;
         this.cliente= cargarClienteBD(cliente);
         cambiarImagen(imageLogo, "bancoG.png");
         FuncionesExtras.cargarCuentasPrincipal(cliente, jComboBox1);
@@ -352,7 +354,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageDepositoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageDepositoMouseClicked
         // TODO add your handling code here:
-        Deposito deposito = new Deposito(cliente);
+        Deposito deposito = new Deposito(cliente, db);
         deposito.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageDepositoMouseClicked
@@ -403,7 +405,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageTarjetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageTarjetaMouseClicked
         // TODO add your handling code here:
-        PagoTarjeta  pagoTarjeta = new PagoTarjeta(cliente);
+        PagoTarjeta  pagoTarjeta = new PagoTarjeta(cliente,db);
         pagoTarjeta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageTarjetaMouseClicked
@@ -419,7 +421,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imageServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageServiciosMouseClicked
         // TODO add your handling code here:
-        PagoServicios  pagoServicios = new PagoServicios(cliente);
+        PagoServicios  pagoServicios = new PagoServicios(cliente,db);
         pagoServicios.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imageServiciosMouseClicked

@@ -301,7 +301,7 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
 
     private void transferirBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferirBtn1MouseClicked
         // TODO add your handling code here:
-         JOptionPane ventanaPin = new JOptionPane();
+        JOptionPane ventanaPin = new JOptionPane();
         String inPin = ventanaPin.showInputDialog("Ingrese su pin");
         int indice = jComboBox1.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indice);

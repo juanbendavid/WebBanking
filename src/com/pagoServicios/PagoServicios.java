@@ -1,5 +1,6 @@
 package com.pagoServicios;
 
+import com.DB.BaseDeDatos;
 import com.clases.Cliente;
 import com.clases.Cuenta;
 import com.deposito.*;
@@ -25,15 +26,16 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
      * Creates new form login
      */
     private Cliente cliente;
-
+    private BaseDeDatos db;
     public PagoServicios() {
 
     }
 
-    public PagoServicios(Cliente cliente) {
+    public PagoServicios(Cliente cliente, BaseDeDatos db ) {
         initComponents();
         this.setLocationRelativeTo(null);
         cambiarImagen(imageLogo, "bancoG.png");
+        this.db = db;
         this.cliente = cliente;
         FuncionesExtras.cargarCuentas(cliente, jComboBox2);
         FuncionesExtras.cargarServicios(cliente, jComboBox1);
@@ -307,7 +309,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
                     jComboBox1.getSelectedItem().toString());
 
             cliente.getCuentas().get(indiceCuenta).addMovimiento(movimiento);   // agrega el movimiento a la cuenta del cliente
-            Principal ventanaPrincipal = new Principal(cliente, indiceCuenta);
+            Principal ventanaPrincipal = new Principal(cliente, indiceCuenta, db);
             ventanaPrincipal.setVisible(true);
             this.dispose();
         } else {
@@ -330,7 +332,7 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
     private void cancelarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtnMouseClicked
         // TODO add your handling code here:
-        Principal ventanaPrincipal = new Principal(cliente, 0);
+        Principal ventanaPrincipal = new Principal(cliente, 0, db);
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarBtnMouseClicked
