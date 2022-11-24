@@ -1,4 +1,3 @@
-
 package com.comprobante;
 
 import com.clases.Movimiento;
@@ -6,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.time.LocalTime;
 
 /**
  *
@@ -16,13 +16,14 @@ public class Comprobante extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    
     private Movimiento movimiento;
+
     public Comprobante(Movimiento movimiento) {
         this.setLocationRelativeTo(null);
         this.movimiento = movimiento;
         initComponents();
         mostrarComprobante();
+        generarTxt(movimiento);
     }
 
     /**
@@ -49,6 +50,7 @@ public class Comprobante extends javax.swing.JFrame {
         descripcion = new javax.swing.JLabel();
         hora = new javax.swing.JLabel();
         cancelarBtn1 = new javax.swing.JButton();
+        idDestinatario1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -126,6 +128,10 @@ public class Comprobante extends javax.swing.JFrame {
             }
         });
 
+        idDestinatario1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        idDestinatario1.setForeground(new java.awt.Color(0, 0, 0));
+        idDestinatario1.setText("Comprobante Generado en .txt");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,6 +172,10 @@ public class Comprobante extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(hora)))
                         .addGap(0, 30, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(idDestinatario1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,11 +200,13 @@ public class Comprobante extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBtn1))
-                .addGap(12, 12, 12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idDestinatario1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,7 +228,7 @@ public class Comprobante extends javax.swing.JFrame {
 
     private void cancelarBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBtn1MouseClicked
         // TODO add your handling code here:
-        
+
         this.dispose();
     }//GEN-LAST:event_cancelarBtn1MouseClicked
 
@@ -224,7 +236,6 @@ public class Comprobante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelarBtn1ActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarBtn1;
@@ -232,6 +243,7 @@ public class Comprobante extends javax.swing.JFrame {
     private javax.swing.JLabel fecha;
     private javax.swing.JLabel hora;
     private javax.swing.JLabel idDestinatario;
+    private javax.swing.JLabel idDestinatario1;
     private javax.swing.JLabel idRemitente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -245,21 +257,23 @@ public class Comprobante extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void mostrarComprobante() {
-        
-        descripcion.setText(" "+ movimiento.getDescripcion());
+
+        descripcion.setText(" " + movimiento.getDescripcion());
         fecha.setText(movimiento.getFecha());
         hora.setText(movimiento.getHora());
         idDestinatario.setText(movimiento.getDestinatario());
         idRemitente.setText(movimiento.getOrigen());
-        monto.setText(movimiento.getMonto()+"");
+        monto.setText(movimiento.getMonto() + "");
         tipo.setText(movimiento.getTipo());
-        
+
     }
-    
-    
-    private void generarTxt(Movimiento movimiento){
+
+    private void generarTxt(Movimiento movimiento) {
+        LocalTime hora = LocalTime.now();
+        String horaS = hora.toString().replace(":", "");
+        horaS=horaS.replace(".", "");
         try {
-            PrintWriter writer = new PrintWriter("/ruta/comprobante_"+movimiento.getFecha()+".txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("Comprobantes/comprobante_" + movimiento.getFecha()+"_"+ horaS+ ".txt", "UTF-8");
             writer.println("Tipo: " + movimiento.getTipo());
             writer.println("Monto: " + movimiento.getMonto());
             writer.println("Destinatario: " + movimiento.getDestinatario());
@@ -267,11 +281,11 @@ public class Comprobante extends javax.swing.JFrame {
             writer.println("Fecha: " + movimiento.getFecha());
             writer.println("Hora: " + movimiento.getHora());
             writer.println("Descripcion: " + movimiento.getDescripcion());
-            
+
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 }

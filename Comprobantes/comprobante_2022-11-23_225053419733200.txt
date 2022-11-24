@@ -1,0 +1,7 @@
+Tipo: Deposito
+Monto: 24234
+Destinatario: 264562
+Remitente: 
+Fecha: 2022-11-23
+Hora: 22:50:53
+Descripcion: ahorro
