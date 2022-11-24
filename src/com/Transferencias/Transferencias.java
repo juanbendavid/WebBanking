@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import com.DB.BaseDeDatos;
+import com.Encriptado.Encriptado;
 import com.comprobante.Comprobante;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -505,7 +506,14 @@ public class Transferencias extends javax.swing.JFrame implements ValidarPinDeTr
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public boolean validación(String pin1, String pin2) {
-        return pin1.equals(pin2);
+    public boolean validación(String pin1, String pin2)  {
+        String passEncrip = null;
+        try {
+             passEncrip = Encriptado.encriptar(pin1);
+        } catch (Exception e) {
+        }
+        
+      
+        return passEncrip.equals(pin2);
     }
 }

@@ -1,0 +1,7 @@
+Tipo: Pago de Tarjeta de Crédito
+Monto: 1231
+Destinatario: 154184
+Remitente: 264562
+Fecha: 2022-11-23
+Hora: 23:19:50
+Descripcion: 

@@ -1,0 +1,7 @@
+Tipo: Transferencias entre cuentas
+Monto: 234234
+Destinatario: 55555
+Remitente: 264562
+Fecha: 2022-11-23
+Hora: 23:18:34
+Descripcion: pago de préstamo

@@ -1,6 +1,7 @@
 package com.pagoTarjeta;
 
 import com.DB.BaseDeDatos;
+import com.Encriptado.Encriptado;
 import com.clases.Cliente;
 import com.clases.Cuenta;
 import com.clases.FuncionesExtras;
@@ -279,7 +280,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
     private void pagarTarjetaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarTarjetaBtnActionPerformed
         // TODO add your handling code here:
-        String inPin =null;
+        String inPin = null;
         int indiceTarjeta = jComboBox1.getSelectedIndex();
         int indiceCuenta = jComboBox2.getSelectedIndex();
         Cuenta cuentaCliente = cliente.getCuentas().get(indiceCuenta);
@@ -290,7 +291,7 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
         if (okCxl == JOptionPane.OK_OPTION) {
             inPin = new String(pf.getPassword());
         }
-        
+
         try {
             if (!validación(inPin, cuentaCliente.getPinCuenta())) {
                 JOptionPane.showMessageDialog(null,
@@ -460,6 +461,12 @@ public class PagoTarjeta extends javax.swing.JFrame implements ValidarPinDeTrans
 
     @Override
     public boolean validación(String pin1, String pin2) {
-        return pin1.equals(pin2);
+        String passEncrip = null;
+        try {
+            passEncrip = Encriptado.encriptar(pin1);
+        } catch (Exception e) {
+        }
+
+        return passEncrip.equals(pin2);
     }
 }

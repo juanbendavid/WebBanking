@@ -442,7 +442,7 @@ public class BaseDeDatos {
     }
     
     public static void main(String[] args) {
-        
+        String password = "12345";
         BaseDeDatos B1 = new BaseDeDatos("jdbc:sqlite:database.db", "database.db");
         Cliente tom = new Cliente("Francisco", "5611897", "11111", null, null);
         Tarjeta t1 = new Tarjeta("1233", 500000, 100000);

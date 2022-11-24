@@ -1,6 +1,7 @@
 package com.pagoServicios;
 
 import com.DB.BaseDeDatos;
+import com.Encriptado.Encriptado;
 import com.clases.Cliente;
 import com.clases.Cuenta;
 import com.deposito.*;
@@ -441,6 +442,12 @@ public class PagoServicios extends javax.swing.JFrame implements ValidarPinDeTra
 
     @Override
     public boolean validación(String pin1, String pin2) {
-        return pin1.equals(pin2);
+        String passEncrip = null;
+        try {
+            passEncrip = Encriptado.encriptar(pin1);
+        } catch (Exception e) {
+        }
+
+        return passEncrip.equals(pin2);
     }
 }
