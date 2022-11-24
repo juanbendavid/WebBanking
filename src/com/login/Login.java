@@ -9,6 +9,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import com.Encriptado.Encriptado;
 
 /**
  *
@@ -222,44 +223,7 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean authUser() {
-        String idCliente = txtCedula.getText();
-        String password = jPasswordField1.toString();
-
-        System.out.println("verificando...");
-
-        cliente = db.buscarClienteBD(idCliente, password);
-        System.out.println(cliente);
-
-        try {
-            cliente = db.buscarClienteBD(idCliente, password);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,
-                    e.getMessage(), "Error de Deposito", JOptionPane.WARNING_MESSAGE);
-            return false;
-
-        }
-
-        if (validación(idCliente, password)) {
-            // datos de prueba
-            cliente = new Cliente();
-            cliente.setNombre("Juan David");
-            cliente.setPinCuenta("12345");
-            cliente.setPinTransferencia("12345");
-            cliente.getCuentas().add(new Cuenta(500000, "14-15451", "12345"));
-            cliente.getCuentas().add(new Cuenta(10000, "15-45187", "54321"));
-            cliente.getCuentas().add(new Cuenta(705000, "18-451547", "11111"));
-            cliente.getTarjetas().add(new Tarjeta("3154512", 0, 2000000));
-            cliente.getTarjetas().add(new Tarjeta("124451", 500000, 4000000));
-            cliente.getServicios().add(new Servicio(0, "Tigo", 200000));
-            cliente.getServicios().add(new Servicio(1, "Ande", 650000));
-            cliente.getServicios().add(new Servicio(2, "Essap", 300000));
-            cliente.getServicios().add(new Servicio(3, "PersonalFlow", 130000));
-            return true;
-        }
-        return false;
-    }
-
+    
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
@@ -267,10 +231,11 @@ public class Login extends javax.swing.JFrame implements ValidarPinDeCuetna {
     private void ingresarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarBtnMouseClicked
         // TODO add your handling code here:
         String idCliente = txtCedula.getText();
-        String password = String.valueOf(jPasswordField1.getPassword());
+        
         
         try {
-            cliente = db.buscarClienteBD(idCliente, password);
+            cliente = db.buscarClienteBD(idCliente, 
+                    Encriptado.encriptar(String.valueOf(jPasswordField1.getPassword())));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     e.getMessage(), "Error de Login", JOptionPane.WARNING_MESSAGE);

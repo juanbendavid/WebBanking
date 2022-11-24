@@ -1,3 +1,4 @@
+package com.Encriptado;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -11,35 +12,34 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-public class Encriptado{
+public class Encriptado {
 
-	private final String claveEncriptacion = "@3';2!"; 
+    private static final String claveEncriptacion = "@3';2!";
 
+    private static SecretKeySpec crearClave(String clave) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        byte[] claveEncriptacion = clave.getBytes("UTF-8");
 
-	private SecretKeySpec crearClave(String clave) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-	byte[] claveEncriptacion = clave.getBytes("UTF-8");
+        MessageDigest sha = MessageDigest.getInstance("SHA-1");
 
-	MessageDigest sha = MessageDigest.getInstance("SHA-1");
+        claveEncriptacion = sha.digest(claveEncriptacion);
+        claveEncriptacion = Arrays.copyOf(claveEncriptacion, 16);
 
-	claveEncriptacion = sha.digest(claveEncriptacion);
-	claveEncriptacion = Arrays.copyOf(claveEncriptacion, 16);
+        SecretKeySpec secretKey = new SecretKeySpec(claveEncriptacion, "AES");
 
-	SecretKeySpec secretKey = new SecretKeySpec(claveEncriptacion, "AES");
+        return secretKey;
+    }
 
-	return secretKey;
-	}
+    public static String encriptar(String datos) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+        SecretKeySpec secretKey = crearClave(claveEncriptacion);
 
-	public String encriptar(String datos) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
-	SecretKeySpec secretKey = this.crearClave(claveEncriptacion);
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
-	Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");        
-	cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        byte[] datosEncriptar = datos.getBytes("UTF-8");
+        byte[] bytesEncriptados = cipher.doFinal(datosEncriptar);
+        String encriptado = Base64.getEncoder().encodeToString(bytesEncriptados);
 
-	byte[] datosEncriptar = datos.getBytes("UTF-8");
-	byte[] bytesEncriptados = cipher.doFinal(datosEncriptar);
-	String encriptado = Base64.getEncoder().encodeToString(bytesEncriptados);
+        return encriptado;
+    }
 
-	return encriptado;
-	}
-    
 }
