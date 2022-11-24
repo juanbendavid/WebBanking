@@ -2,6 +2,10 @@
 package com.comprobante;
 
 import com.clases.Movimiento;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  *
@@ -249,6 +253,25 @@ public class Comprobante extends javax.swing.JFrame {
         idRemitente.setText(movimiento.getOrigen());
         monto.setText(movimiento.getMonto()+"");
         tipo.setText(movimiento.getTipo());
+        
+    }
+    
+    
+    private void generarTxt(Movimiento movimiento){
+        try {
+            PrintWriter writer = new PrintWriter("/ruta/comprobante_"+movimiento.getFecha()+".txt", "UTF-8");
+            writer.println("Tipo: " + movimiento.getTipo());
+            writer.println("Monto: " + movimiento.getMonto());
+            writer.println("Destinatario: " + movimiento.getDestinatario());
+            writer.println("Remitente: " + movimiento.getRemitente());
+            writer.println("Fecha: " + movimiento.getFecha());
+            writer.println("Hora: " + movimiento.getHora());
+            writer.println("Descripcion: " + movimiento.getDescripcion());
+            
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
     }
 }
